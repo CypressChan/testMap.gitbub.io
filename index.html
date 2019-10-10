@@ -8,6 +8,7 @@
 	<style>
 	  a {display:block;margin:10px;}
 	</style>
+    <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script>
   </head>
   <body>
     <noscript>
@@ -40,7 +41,13 @@
 	  }else{
           proto = isiOS ? 'baidumap://'  : 'bdapp://' 
           AppUrl = proto +  "map/navi?query=故宫&src=andr.baidu.openAPIdemo";
-          ToggleApp(AppUrl);
+	  let commonCallback = ()=>{};	  
+	  let params = {
+                    "urlScheme": AppUrl,
+                    "success": "commonCallback"
+                };
+          ruixin.openUrlScheme(params);
+          //ToggleApp(AppUrl);
 	  }
 	}
 	
