@@ -20,6 +20,44 @@
 	<a href="https://uri.amap.com/marker?position=30.5490009959,104.0777968852&name=天府软件园">高德地图经纬度</a>
 	<a href="http://api.map.baidu.com/marker?location=104.0777968852,30.5490009959&title=天府软件园&content=所在位置的简介（可选）&output=html">百度地图经纬度</a>
 	</div>
-    <!-- built files will be auto injected -->
+	
+	<a href="javascript:void(0);" onclick="jump(1)">唤醒高德app</a>
+    <a href="javascript:void(0);" onclick="jump(2)">唤醒百度app</a>
   </body>
+  <script>
+    function jump(param){
+	  let proto = '';
+	  let AppUrl = '';
+	  const u = navigator.userAgent;
+      const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	  
+	  let curLat,
+		  curLng,
+		  currAddr,
+		  elat,
+		  elng,
+		  eaddr;
+	  if(param === 1){
+	     // 苹果和安卓头部不一样
+		proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
+        AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
+        ToggleApp(AppUrl);
+	  }else{
+        proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
+        AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
+        ToggleApp(AppUrl);
+	  }
+	}
+	
+	function  ToggleApp( AppUrl){
+	  const ifr = document.createElement('iframe');
+	  ifr.src = AppUrl;
+	  ifr.style.display = 'none';
+	  document.body.appendChild(ifr);
+	  setTimeout(function(){
+		document.body.removeChild(ifr);
+	  }, 3000);
+    }
+
+  </script>
 </html>
