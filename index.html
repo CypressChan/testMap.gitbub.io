@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>test-map</title>
 	<style>
-	  a {display:block;margin:10px;}
+	  a,input {display:block;margin:20px;}
 	</style>
     <script src='RuixinOpenAPI.js'></script>
   </head>
@@ -14,8 +14,9 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <a href="javascript:void(0);" onclick="jump(1)">高德地图测试</a>
-    <a href="javascript:void(0);" onclick="jump(2)">百度地图测试</a>
+    终点名称：<input id='end'/>  
+    <a href="javascript:void(0);" onclick="jump(1)">高德地图导航</a>
+    <a href="javascript:void(0);" onclick="jump(2)">百度地图导航</a>
 <!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
 <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
 -->	  
@@ -34,17 +35,18 @@
 	      elat = 39.98848272,
 	      elng = 116.47560823,
 	      eaddr = 'B';
+	    let end = document.getElementById('end').value
 	  if(param === 1){
 	     // 苹果和安卓头部不一样
 	  proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
-          AppUrl = proto + "?sid=&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&dev=0&t=0";
+	  AppUrl = proto + "?sid=&dlat="+elat+"&dlon="+elng+"&dname="+end+"&dev=0&t=0";
+         // AppUrl = proto + "?sid=&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&dev=0&t=0";
          // ToggleApp(AppUrl);
 	  }else{
           proto = isiOS ? 'baidumap://'  : 'bdapp://' 
-          AppUrl = proto +  "map/navi?query=故宫&src=andr.baidu.openAPIdemo";
+          AppUrl = proto +  "map/navi?query=" + end + "&src=andr.baidu.openAPIdemo";
           //ToggleApp(AppUrl);
 	  }
-	     let commonCallback = ()=>{alert('回调')};	  
 	  let params = {
                     "urlScheme": AppUrl,
                     "success": "commonCallback"
