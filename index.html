@@ -31,9 +31,9 @@
 	  const u = navigator.userAgent;
       const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	  
-	  let curLat,
-		  curLng,
-		  currAddr,
+	  let curLat = 104.0777968852,
+		  curLng = 30.5490009959,
+		  currAddr = '天府软件园',
 		  elat,
 		  elng,
 		  eaddr;
@@ -41,6 +41,7 @@
 	     // 苹果和安卓头部不一样
 		proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
         AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
+		console.log(AppUrl);
         ToggleApp(AppUrl);
 	  }else{
         proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
