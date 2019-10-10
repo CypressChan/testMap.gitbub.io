@@ -20,12 +20,23 @@
 	  
 <a href="baidumap://map/navi?location=30.6574200000,104.0658400000&coord_type=bd09ll&type=BLK&src=ios.baidu.openAPIdemo">百度导航ios</a>
 <a href="javascript:void(0);" onclick="jump2()">高德导航ios</a>
+<a href="iosamap://navi?sourceApplication=appname&poiname=fangheng&lat=36.678528&lon=117.140208&dev=1&">ios，高德驾车导航</a>
+<a href="javascript:void(0);" onclick="jump3()">ios，高德驾车导航2</a>
 <!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
 <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
 -->	  
   </body>
   <script>
     ruixin = new RuixinApi();
+    function commonCallback(){};	  
+    function jump3(){
+        let url = 'iosamap://navi?sourceApplication=appname&poiname=fangheng&lat=36.678528&lon=117.140208&dev=1&';
+	let params = {
+                    "urlScheme": url,
+                    "success": "commonCallback"
+                };
+       ruixin.openUrlScheme(params);
+    }	  
     function jump2(){
         let url = 'iosamap://path?sourceApplication=applicationName&sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0';
 	    let params = {
