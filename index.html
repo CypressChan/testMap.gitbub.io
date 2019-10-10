@@ -13,43 +13,34 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app">
-	<a href="https://uri.amap.com/marker?position=经度,纬度&name=所在的位置名称">高德地图</a>
-	<a href="http://api.map.baidu.com/marker?location=纬度,经度&title=所在位置名称&content=所在位置的简介（可选）&output=html">百度地图</a>
-	
-	<a href="https://uri.amap.com/marker?position=30.5490009959,104.0777968852&name=天府软件园">高德地图经纬度</a>
-	<a href="http://api.map.baidu.com/marker?location=104.0777968852,30.5490009959&title=天府软件园&content=所在位置的简介（可选）&output=html">百度地图经纬度</a>
-	</div>
-	
-	<a href="javascript:void(0);" onclick="jump(1)">唤醒高德app</a>
-    <a href="javascript:void(0);" onclick="jump(2)">唤醒百度app</a>
+    <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
+    <a href="javascript:void(0);" onclick="jump(2)">百度地图</a>
 <a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
 	  <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
-	  <a href="bdapp://map/newsassistant?src=andr.baidu.openAPIdemo">调起出行早晚报页面</a>
+	  
   </body>
   <script>
     function jump(param){
-	  let proto = '';
+          let proto = '';
 	  let AppUrl = '';
 	  const u = navigator.userAgent;
-      const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+          const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	  
-	  let curLat = 104.0777968852,
-		  curLng = 30.5490009959,
-		  currAddr = '天府软件园',
-		  elat,
-		  elng,
-		  eaddr;
+	  let curLat = 39.92848272,
+	      curLng = 116.39560823,
+	      currAddr = 'A',
+	      elat = 39.98848272,
+	      elng  116.47560823,
+	      eaddr = 'B';
 	  if(param === 1){
 	     // 苹果和安卓头部不一样
-		proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
-        AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
-		console.log(AppUrl);
-        ToggleApp(AppUrl);
+	  proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
+          AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
+          ToggleApp(AppUrl);
 	  }else{
-        proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
-        AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
-        ToggleApp(AppUrl);
+          proto = isiOS ? 'baidumap://'  : 'bdapp://' 
+          AppUrl = proto +  "map/direction?region="+''+"&origin=latlng:"+ curLat+","+ curLng +"|name:"+ currAddr +"&destination=latlng:"+ elat +","+ elng +"|name:"+ eaddr +"&coord_type=bd09ll&mode=driving&src=com.youbei.chefu";
+          ToggleApp(AppUrl);
 	  }
 	}
 	
