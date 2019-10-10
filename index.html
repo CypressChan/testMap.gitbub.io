@@ -35,11 +35,11 @@
 	  if(param === 1){
 	     // 苹果和安卓头部不一样
 	  proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
-          AppUrl = proto + "?t= 0&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&src=xxx";
+          AppUrl = proto + "?sid=&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&dev=0&t=0";
           ToggleApp(AppUrl);
 	  }else{
           proto = isiOS ? 'baidumap://'  : 'bdapp://' 
-          AppUrl = proto +  "map/direction?region="+''+"&origin=latlng:"+ curLat+","+ curLng +"|name:"+ currAddr +"&destination=latlng:"+ elat +","+ elng +"|name:"+ eaddr +"&coord_type=bd09ll&mode=driving&src=com.youbei.chefu";
+          AppUrl = proto +  "map/navi?query=故宫&src=andr.baidu.openAPIdemo";
           ToggleApp(AppUrl);
 	  }
 	}
