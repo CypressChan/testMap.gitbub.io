@@ -14,28 +14,25 @@ H5上调用百度和高德地图进行导航，官网api：
 	  a,input {display:block;margin:20px;}
 	</style>
     <script src='RuixinOpenAPI.js'></script>
+    <script src="../../DDZH/webUI/Gruntfile.js"></script>
   </head>
   <body>
     终点名称：<input id='end'/>
     <a href="javascript:void(0);" onclick="navi(1)">高德地图导航(调用rx api)</a>
     <a href="javascript:void(0);" onclick="navi(2)">百度地图导航(调用rx api)</a>
 
-    <a href="bdapp://map/navi?query=天府广场&src=andr.baidu.openAPIdemo">android百度导航(直接打开url)</a>
-    <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">android高德导航(直接打开url)，amapuri协议(路线规划)</a>
-    <a href="androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=30.6574200000&lon=104.0658400000&dev=1&style=2">android高德导航(直接打开url)，androidamap协议(导航)</a>
-
     <a href="baidumap://map/navi?location=30.6574200000,104.0658400000&coord_type=bd09ll&type=BLK&src=ios.baidu.openAPIdemo">ios百度导航(直接打开url)</a>
     <a href="iosamap://navi?sourceApplication=applicationName&poiname=fangheng&poiid=BGVIS&lat=36.547901&lon=104.258354&dev=1&style=2">ios高德导航(直接打开url)</a>
+    <span>备注：在rx中，ios下高德地图打不开?</span>
   </body>
   <script>
-    /*
-    * 高德地图。通过rx webview打开：android ok（调用rx api前提下），ios fail
-    * 高德地图。通过浏览器打开： android ok，ios ok（safari下）
-    * 百度地图。通过rx webview打开：android ok ，ios ok   （均可以不调用rx api）
-    * 百度地图。通过浏览器打开： android ok，ios ok（safari下）
+    /*总结：
+    * 通过rx webview打开：安卓下必须调用rx api解析schema，IOS下百度地图可以直接通过url打开，高德地图没有响应。
+    * 通过浏览器均可以打开。
+    * 很奇怪的一点：安卓下可以打开百度地图ios协议下的url。
     * */
     ruixin = new RuixinApi();
-    function commonCallback(){alert('回调')}
+    function commonCallback(){}
     function navi(param){
 	  const u = navigator.userAgent;
       const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -43,7 +40,7 @@ H5上调用百度和高德地图进行导航，官网api：
           AppUrl = '',
 	      endName = document.getElementById('end').value;
 	  if(param === 1){ //高德地图
-	     proto = isiOS ? 'iosamap://navi' : 'amapuri://route/plan';
+	     proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan';
 	     AppUrl = proto + "?sid=&dname="+endName+"&dev=0&t=0";
          // ToggleApp(AppUrl);
 	  }else{  //百度地图
