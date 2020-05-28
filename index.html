@@ -1,61 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>test-map</title>
+	<style>
+	  a, input{display:block;margin:10px;}
+	</style>
+    <!-- <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script> -->
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+	<a href="weixin://">打开微信</a>
+	<a href="mqq://">打开QQ</a>
+	<a href="taobao://">打开淘宝</a>
+	<a href="baidumap://">打开百度地图</a>
+	
+	<a href="com.seeyon.cmp://">打开com.seeyon.cmp</a>
+	
+	
+	<!-- 起点名称：<input id='start'/>
+	终点名称：<input id='end'/>
+    <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
+    <a href="javascript:void(0);" onclick="jump(2)">百度地图</a> -->
+	
+<!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
+<a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
+-->	  
+  </body>
+  <script>
+	  
+	// 扩展API加载完毕后调用onPlusReady回调函数 
+	document.addEventListener( "plusready", onPlusReady, false );
+	var r = null; 
+	// 扩展API加载完毕，现在可以正常调用扩展API 
+	function onPlusReady() {
+		// 获取设备默认的摄像头对象 
+		alert(123);
+		var cmr = plus.camera.getCamera();
+		alert( "Camera supperted image resolutions: " + cmr.supportedImageResolutions );
+		// ...... 
+	}  
+	  
+	  
+	  
+    function jump(param){
+	  alert(document.getElementById('start').value);
+          let proto = '';
+	  let AppUrl = '';
+	  const u = navigator.userAgent;
+          const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	  
+	  let curLat = 39.92848272,
+	      curLng = 116.39560823,
+	      currAddr = 'A',
+	      elat = 39.98848272,
+	      elng = 116.47560823,
+	      eaddr = 'B';
+	  if(param === 1){
+	     // 苹果和安卓头部不一样
+	  proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
+          AppUrl = proto + "?sid=&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&dev=0&t=0";
+          ToggleApp(AppUrl);
+	  }else{
+          proto = isiOS ? 'baidumap://'  : 'bdapp://' 
+          AppUrl = proto +  "map/navi?query=故宫&src=andr.baidu.openAPIdemo";
+	  let commonCallback = ()=>{};	  
+	  let params = {
+                    "urlScheme": AppUrl,
+                    "success": "commonCallback"
+                };
+          ruixin.openUrlScheme(params);
+          //ToggleApp(AppUrl);
+	  }
+	}
+	
+	function  ToggleApp( AppUrl){
+	  const ifr = document.createElement('iframe');
+	  ifr.src = AppUrl;
+	  ifr.style.display = 'none';
+	  document.body.appendChild(ifr);
+	  setTimeout(function(){
+		document.body.removeChild(ifr);
+	  }, 3000);
+    }
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
-		<script src="js/mui.min.js"></script>
-		<link href="css/mui.min.css" rel="stylesheet" />
-	</head>
-
-	<body>
-
-		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">H5plustest</h1>
-		</header>
-
-		<div class="mui-content">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell"  id="device.html">
-					<a class="mui-navigate-right">
-						获取手机设备信息
-					</a>
-				</li>
-				<li class="mui-table-view-cell"  id="screen.html">
-					<a class="mui-navigate-right">
-						获取手机屏幕信息
-					</a>
-				</li>
-				<li class="mui-table-view-cell"  id="network.html">
-					<a class="mui-navigate-right">
-						获取网络的状态
-					</a>
-				</li>
-				<li class="mui-table-view-cell"  id="phone.html">
-					<a class="mui-navigate-right">
-						打电话、发短信、发邮件
-					</a>
-				</li>
-				<li class="mui-table-view-cell"  id="contact.html">
-					<a class="mui-navigate-right">
-						获取手机通讯录联系人
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
-				var page=this.getAttribute("id");
-				
-				mui.openWindow({
-					id:page,
-					url:page
-				});
-			})
-		</script>
-	</body>
-
+  </script>
 </html>
