@@ -1,8 +1,3 @@
-<!--
-H5上调用百度和高德地图进行导航，官网api：
-百度地图：http://lbsyun.baidu.com/index.php?title=uri/api/android#service-page-anchor10
-高德地图：https://lbs.amap.com/api/amap-mobile/guide/ios/navi
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,50 +6,64 @@ H5上调用百度和高德地图进行导航，官网api：
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>test-map</title>
 	<style>
-	  a,input {display:block;margin:20px;}
+	  a, input{display:block;margin:10px;}
 	</style>
-    <script src='RuixinOpenAPI.js'></script>
-    <script src="../../DDZH/webUI/Gruntfile.js"></script>
+    <!-- <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script> -->
   </head>
   <body>
-    终点名称：<input id='end'/>
-    <a href="javascript:void(0);" onclick="navi(1)">高德地图导航(调用rx api)</a>
-    <a href="javascript:void(0);" onclick="navi(2)">百度地图导航(调用rx api)</a>
-
-    <a href="baidumap://map/navi?location=30.6574200000,104.0658400000&coord_type=bd09ll&type=BLK&src=ios.baidu.openAPIdemo">ios百度导航(直接打开url)</a>
-    <a href="iosamap://navi?sourceApplication=applicationName&poiname=fangheng&poiid=BGVIS&lat=36.547901&lon=104.258354&dev=1&style=2">ios高德导航(直接打开url)</a>
-    <span>备注：在rx中，ios下高德地图打不开?</span>
+    <noscript>
+      <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+	<a href="weixin://">打开微信</a>
+	
+	
+	
+	<!-- 起点名称：<input id='start'/>
+	终点名称：<input id='end'/>
+    <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
+    <a href="javascript:void(0);" onclick="jump(2)">百度地图</a> -->
+	
+<!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
+<a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
+-->	  
   </body>
   <script>
-    /*总结：
-    * 通过rx webview打开：安卓下必须调用rx api解析schema，IOS下百度地图可以直接通过url打开，高德地图没有响应。
-    * 通过浏览器均可以打开。
-    * 很奇怪的一点：安卓下可以打开百度地图ios协议下的url。
-    * */
-    ruixin = new RuixinApi();
-    function commonCallback(){}
-    function navi(param){
+	  
+	  
+	  
+	  
+	  
+    function jump(param){
+	  alert(document.getElementById('start').value);
+          let proto = '';
+	  let AppUrl = '';
 	  const u = navigator.userAgent;
-      const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-	  let proto = '',
-          AppUrl = '',
-	      endName = document.getElementById('end').value;
-	  if(param === 1){ //高德地图
-	     proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan';
-	     AppUrl = proto + "?sid=&dname="+endName+"&dev=0&t=0";
-         // ToggleApp(AppUrl);
-	  }else{  //百度地图
-          proto = isiOS ? 'baidumap://' : 'bdapp://';
-          AppUrl = proto +  "map/navi?query=" + endName + "&src=andr.baidu.openAPIdemo";
+          const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	  
+	  let curLat = 39.92848272,
+	      curLng = 116.39560823,
+	      currAddr = 'A',
+	      elat = 39.98848272,
+	      elng = 116.47560823,
+	      eaddr = 'B';
+	  if(param === 1){
+	     // 苹果和安卓头部不一样
+	  proto = isiOS ? 'iosamap://path' : 'amapuri://route/plan'  ;
+          AppUrl = proto + "?sid=&slat="+curLat+"&slon="+curLng+"&sname="+currAddr+"&dlat="+elat+"&dlon="+elng+"&dname="+eaddr+"&dev=0&t=0";
+          ToggleApp(AppUrl);
+	  }else{
+          proto = isiOS ? 'baidumap://'  : 'bdapp://' 
+          AppUrl = proto +  "map/navi?query=故宫&src=andr.baidu.openAPIdemo";
+	  let commonCallback = ()=>{};	  
+	  let params = {
+                    "urlScheme": AppUrl,
+                    "success": "commonCallback"
+                };
+          ruixin.openUrlScheme(params);
           //ToggleApp(AppUrl);
 	  }
-	  let params = {
-          "urlScheme": AppUrl,
-          "success": "commonCallback"
-      };
-      ruixin.openUrlScheme(params);
 	}
-
+	
 	function  ToggleApp( AppUrl){
 	  const ifr = document.createElement('iframe');
 	  ifr.src = AppUrl;
@@ -64,5 +73,6 @@ H5上调用百度和高德地图进行导航，官网api：
 		document.body.removeChild(ifr);
 	  }, 3000);
     }
+
   </script>
 </html>
