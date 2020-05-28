@@ -8,7 +8,7 @@
 	<style>
 	  a, input{display:block;margin:10px;}
 	</style>
-    <!-- <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script> -->
+    <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script>
   </head>
   <body>
     <noscript>
@@ -21,34 +21,53 @@
 	
 	<a href="com.seeyon.cmp://">打开com.seeyon.cmp</a>
 	
+	<p id="demo">点击这个按钮，获得您的坐标：</p>
+	<button onclick="getLocation()">试一下</button>
 	
-	<!-- 起点名称：<input id='start'/>
+	<a href="javascript:void(0);" onclick="gotoApp('weixin://')">打开微信</a>
+	<a href="javascript:void(0);" onclick="gotoApp('mqq://')" >打开QQ</a>
+	<a href="javascript:void(0);" onclick="gotoApp('taobao://')" >打开淘宝</a>
+	<a href="javascript:void(0);" onclick="gotoApp('baidumap://')" >打开百度地图</a>
+	<a href="javascript:void(0);" onclick="gotoApp('com.seeyon.cmp://')" >打开com.seeyon.cmp</a>
+	
+	
+	
+	起点名称：<input id='start'/>
 	终点名称：<input id='end'/>
     <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
-    <a href="javascript:void(0);" onclick="jump(2)">百度地图</a> -->
+    <a href="javascript:void(0);" onclick="jump(2)">百度地图</a>
 	
 <!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
 <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
 -->	  
   </body>
   <script>
+	var ruixin = new RuixinApi();
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="Latitude: " + position.coords.latitude + 
+  "<br />Longitude: " + position.coords.longitude;	
+  } 
 	  
-	// 扩展API加载完毕后调用onPlusReady回调函数 
-	document.addEventListener( "plusready", onPlusReady, false );
-	var r = null; 
-	// 扩展API加载完毕，现在可以正常调用扩展API 
-	function onPlusReady() {
-		// 获取设备默认的摄像头对象 
-		alert(123);
-		var cmr = plus.camera.getCamera();
-		alert( "Camera supperted image resolutions: " + cmr.supportedImageResolutions );
-		// ...... 
-	}  
-	  
-	  
+	  function gotoApp(AppUrl){
+		  let params = {
+		                "urlScheme": AppUrl,
+		                "success": "commonCallback"
+		            };
+		      ruixin.openUrlScheme(params);
+	  }
 	  
     function jump(param){
-	  alert(document.getElementById('start').value);
+	  // alert(document.getElementById('start').value);
           let proto = '';
 	  let AppUrl = '';
 	  const u = navigator.userAgent;
