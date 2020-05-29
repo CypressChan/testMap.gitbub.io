@@ -19,7 +19,7 @@
 	<a href="taobao://">打开淘宝</a>
 	<a href="baidumap://">打开百度地图</a>
 	
-	<a href="seeyon://m3">测试打开移动办公</a>
+	<a href="seeyon://m3">打开移动办公</a>
 	
 	<p id="demo">点击这个按钮，获得您的坐标：</p>
 	<button onclick="getLocation()">试一下</button>
@@ -31,7 +31,7 @@
 	<a href="javascript:void(0);" onclick="gotoApp('mqq://')" >瑞信打开QQ</a>
 	<a href="javascript:void(0);" onclick="gotoApp('taobao://')" >瑞信打开淘宝</a>
 	<a href="javascript:void(0);" onclick="gotoApp('baidumap://')" >瑞信打开百度地图</a>
-	<a href="javascript:void(0);" onclick="gotoApp('seeyon://m3')" >测试瑞信打开移动办公</a>
+	<a href="javascript:void(0);" onclick="gotoApp('seeyon://m3')" >瑞信打开移动办公</a>
 	
 	
 	
@@ -62,7 +62,7 @@ function showPosition(position)
   } 
 	  
 	  function gotoApp(AppUrl){
-		    let commonCallback = ()=>{};	  
+		    // let commonCallback = ()=>{};	  
 		  let params = {
 		                "urlScheme": AppUrl,
 						"success": "commonCallback"
