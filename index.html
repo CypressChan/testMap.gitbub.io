@@ -17,9 +17,9 @@
 	<a href="weixin://">打开微信</a>
 	<a href="mqq://">打开QQ</a>
 	<a href="taobao://">打开淘宝</a>
-	<a href="baidumap://">打开百度地图</a>
+	<a href="bdapp://">打开百度地图</a>
 	
-	<a href="seeyon://m3">打开移动办公</a>
+	<a href="seeyon://m3">打开移动办公1</a>
 	
 	<p id="demo">点击这个按钮，获得您的坐标：</p>
 	<button onclick="getLocation()">试一下</button>
@@ -30,8 +30,8 @@
 	<a href="javascript:void(0);" onclick="gotoApp('weixin://')">瑞信打开微信</a>
 	<a href="javascript:void(0);" onclick="gotoApp('mqq://')" >瑞信打开QQ</a>
 	<a href="javascript:void(0);" onclick="gotoApp('taobao://')" >瑞信打开淘宝</a>
-	<a href="javascript:void(0);" onclick="gotoApp('baidumap://')" >瑞信打开百度地图</a>
-	<a href="javascript:void(0);" onclick="gotoApp('seeyon://m3')" >瑞信打开移动办公</a>
+	<a href="javascript:void(0);" onclick="gotoApp('bdapp://')" >瑞信打开百度地图</a>
+	<a href="javascript:void(0);" onclick="gotoApp('seeyon://m3')" >瑞信打开移动办公111</a>
 	
 	
 	
@@ -46,6 +46,7 @@
   </body>
   <script>
 	var ruixin = new RuixinApi();
+	  let commonCallback = ()=>{};	  
 var x=document.getElementById("demo");
 function getLocation()
   {
@@ -55,6 +56,7 @@ function getLocation()
     }
   else{x.innerHTML="Geolocation is not supported by this browser.";}
   }
+ 
 function showPosition(position)
   {
   x.innerHTML="Latitude: " + position.coords.latitude + 
@@ -62,7 +64,7 @@ function showPosition(position)
   } 
 	  
 	  function gotoApp(AppUrl){
-		    // let commonCallback = ()=>{};	  
+		   alert(AppUrl);
 		  let params = {
 		                "urlScheme": AppUrl,
 						"success": "commonCallback"
