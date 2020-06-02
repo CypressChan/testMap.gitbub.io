@@ -27,8 +27,8 @@
 	<a href="javascript:void(0);" onclick="gotoApp('taobao://')" >瑞信打开淘宝</a>
 	<a href="javascript:void(0);" onclick="gotoApp('bdapp://map/navi')" >瑞信打开百度地图</a>
 	<a href="javascript:void(0);" onclick="gotoApp('seeyon://m3')" >瑞信打开移动办公</a>
-	
-	
+	<a href="javascript:void(0);" onclick="getToken()" >瑞信获取token</a>
+	token：<input id="myToken"/>
 	
 	起点名称：<input id='start'/>
 	终点名称：<input id='end'/>
@@ -41,6 +41,13 @@
   </body>
   <script>
 	var ruixin = new RuixinApi();
+	function getToken(){
+		var input = document.querySelector('#myToken');
+		window.success = function(res){
+			  input.value = res.token;
+		  }
+		ruixin.getUserInfo({'success': 'success'}) 
+	}
 	function gotoApp(AppUrl){
 	  var params = {
 			"urlScheme": AppUrl
