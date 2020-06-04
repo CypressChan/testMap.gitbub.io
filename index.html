@@ -30,6 +30,9 @@
 	<a href="javascript:void(0);" onclick="getToken()" >瑞信获取token</a>
 	token：<input id="myToken"/>
 	
+	<a href="javascript:void(0);" onclick="selectResource(1)" >调用手机拍照/录像/相册功能</a>
+	<a href="javascript:void(0);" onclick="selectResource(2)" >上传资源</a>
+	
 	起点名称：<input id='start'/>
 	终点名称：<input id='end'/>
     <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
@@ -41,6 +44,33 @@
   </body>
   <script>
 	var ruixin = new RuixinApi();
+	function upSuccess(res){
+		alert(JSON.stringify(res));
+	}
+	function upFail(res){
+		alert(JSON.stringify(res));
+	}
+	function selectMultiResource(res){
+		alert(JSON.stringify(res));
+	}
+	function selectResource(type){
+		switch(type){
+			case 1:
+			  ruixin.selectResource({
+				  "success": "upSuccess"
+			  })
+			  break;
+			case 2:
+			ruixin.selectResource({
+				"success": "upSuccess",
+				"fail": "upFail",
+				"selectMultiResource": "selectMultiResource"
+			})
+			  break;
+		}
+	}
+	
+	
 	function getToken(){
 		var input = document.querySelector('#myToken');
 		window.success = function(res){
