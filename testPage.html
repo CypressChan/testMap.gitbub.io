@@ -1,0 +1,1085 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <style>
+        body {
+            word-break: break-all;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+    <script src='./jquery.js'></script>
+    <script src='./json2.js'></script>
+    <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script>
+    <!--<script src='./RuixinOpenAPI.js'></script>-->
+</head>
+
+<body>
+    <html>
+
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name='viewport' content='width=device-width,minimum-scale=1, maximum-scale=1'>
+        <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'>
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            hr,
+            p,
+            ul,
+            ol,
+            td {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: '黑体'
+            }
+
+            ul,
+            ol {
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .meeting_title {
+                font-weight: normal;
+                background: #5488c8;
+                text-align: center;
+                color: #fff;
+                font-size: 18px;
+                padding: 10px 0;
+                letter-spacing: 3px;
+            }
+
+            .meeting_top_back {
+                position: relative;
+            }
+
+            .meeting_top_back i {
+                position: absolute;
+                top: 10px;
+                left: 5px;
+            }
+
+            .meeting_top_back i img {
+                width: 25px;
+            }
+
+            .centent_img {
+                padding: 20px;
+            }
+
+            .centent_img img {
+                margin: 0 auto;
+                display: block;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .name {
+                line-height: 30px;
+            }
+
+            .name:before {
+                content: attr(data-coheade) ' : ';
+                color: #777;
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            .name a {
+                color: #777;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            var ruixin;
+            var selectResParam;
+            var uploadCallbackResultMsg;
+            $(function () {
+                ruixin = new RuixinApi();
+                //showPreview("/Users/richfit/Library/Developer/CoreSimulator/Devices/8E760414-ABF5-4FB1-8676-589AF2952A7B/data/Containers/Data/Application/E125F707-632E-46CC-B7BF-3323EDD1901C/Library/Application Support/瑞信/d41d8cd98f00b204e9800998ecf8427e/PHOTO/pubsub/SagOBQ");
+            });
+            function testUserInfo() {
+                var params = { "success": "userInfoCallback", "fail": "commonCallback" };
+                ruixin.getUserInfo(params);
+            }
+            function userInfoCallback(user) {
+                showResult(JSON.stringify(user));
+            }
+            function testSetTitle() {
+                var params = { "title": "Test Title", "success": "commonCallback" };
+                ruixin.setWebViewTitle(params);
+            }
+
+            function testHideTitle() {
+                var params = { "success": "commonCallback" };
+                ruixin.hideWebViewTitle(params);
+            }
+
+            function testShowUserInfo() {
+                var params = { "userId": "86310761____sydj", "fail": "commonCallback" };
+                ruixin.showUserInfo(params);
+            }
+
+            function testGet() {
+                var params = { "url": "http://portal.app.cnpc.com.cn:2048/umapp/SNSGenDBJson", "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.get(params);
+            }
+
+            function testPost() {
+                var params = { "url": "http://portal.app.cnpc.com.cn:2048/umapp/SNSGenDBJson", "params": {}, "body": "", "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.post(params);
+            }
+
+            function testHideShare() {
+                var params = { "success": "commonCallback" };
+                ruixin.hideShareButton(params);
+            }
+
+            function testGoBackPreviousPage() {
+                var params = { "success": "commonCallback" };
+                ruixin.goBackPreviousPage(params);
+            }
+
+            function testClosePage() {
+                var params = { "success": "commonCallback" };
+                ruixin.closePage(params);
+            }
+
+            function testConfig() {
+                var params = { "appId": "111", "accessToken": "222", "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.config(params);
+            }
+
+            function testDocPreview() {
+                var params = { "fileUrl": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160616104155135Aq6Ro/20160616104155135Aq6Ro.jpg", "fileName": "1.docx" };
+                ruixin.docPreview(params);
+            }
+
+            function testTelePhoneCall() {
+                var params = { "phoneNum": "18513553932", "fail": "commonCallback" };
+                ruixin.telePhoneCall(params);
+            }
+
+            function testChat() {
+                var params = { "userEmail": "tianguangwen@cnpc.com.cn", "fail": "commonCallback" };
+                ruixin.chat(params);
+            }
+
+            function testSetShareContent() {
+                var params = {
+                    "imageUrl": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160721162046257029Md/thumbnail",
+                    "title": "测试title",
+                    "summary": "测试summary",
+                    "url": "http://11.8.8.85/test/testPage.html",
+                    "success": "commonCallback",
+                    "fail": "commonCallback"
+                };
+                ruixin.setShareContent(params);
+            }
+
+            function testAddQQMenu() {
+                var params = {
+                    "imageUrl": "",
+                    "title": "QQ分享",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addQQMenu(params);
+            }
+
+            function testAddSinaMenu() {
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addSinaMenu(params);
+            }
+
+            function testAddWeixinFavoriteMenu() {
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addWeixinFavoriteMenu(params);
+            }
+
+            function testAddWeixinCircleMenu() {
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addWeixinCircleMenu(params);
+            }
+
+            function testAddWeixinMenu() {
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addWeixinMenu(params);
+            }
+
+            function testAddRandomMenu() {
+                var type = RXShareMenuEnum.AllShareMenus;
+                type = Math.floor(Math.random() * type) + 1;
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addShareMenus(type, params);
+            }
+
+            function testAddQQWeixinMenu() {
+                var type = RXShareMenuEnum.ShareQQMenu | RXShareMenuEnum.ShareWeixinMenu | RXShareMenuEnum.ShareWeixinCircleMenu;
+                var params = {
+                    "imageUrl": "",
+                    "title": "分享网页标题",
+                    "summary": "摘要内容",
+                    "url": "http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html",
+                    "success": "commonCallback"
+                };
+                ruixin.addShareMenus(type, params);
+            }
+
+            function testEnterSubApp() {
+                var params = {
+                    "subAppId": "HSE",
+                    "subAppEntityId": "590",
+                    "imageUrl": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160218132717234w5ufc/thumbnail",
+                    "title": "HSE隝手拝",
+                    "summary": "Fffggg",
+                    "url": "",
+                    "mediatype": 0,
+                    "fail": "commonCallback"
+                };
+                ruixin.enterSubApp(params);
+            }
+            //保存Key-Value
+            function testStore() {
+                var params = { "success": "selectCallback", "key": "testKey", "value": "testValue" };
+                ruixin.storeKeyValue(params);
+            }
+            //读取Key-Value
+            function testLoad() {
+                var params = { "success": "selectCallback", "key": "testKey" };
+                ruixin.loadKeyValue(params);
+            }
+            //选择资溝
+            function testSelect() {
+                var params = { "success": "selectCallback" };
+                ruixin.selectResource(params);
+            }
+            //选择并上传资溝
+            function testSelectAndUpload() {
+                uploadCallbackResultMsg = "";
+                var str = encodeURI("http://download.appst.cnpc.com.cn:2052/rxfilex/cosupload");
+                var params = { "url": str, "success": "uploadResultCallBack", "fail": "uploadResultCallBack", "percent": "uploadResultCallBack" };
+                ruixin.selectResourceAndUpload(params);
+            }
+            //选择资溝
+            function testSelect() {
+                var params = { "success": "selectCallback" };
+                ruixin.selectResource(params);
+            }
+
+            //选图回调函数
+            function selectCallback(msg) {
+                document.getElementById("picture").src = msg.resSource;
+                msg.resSource = "已显示"
+                showResult(JSON.stringify(msg));
+                selectResParam = msg;
+            }
+            //上传资溝
+            function testUpload() {
+                uploadCallbackResultMsg = "";
+                var params = selectResParam;
+                if (params == undefined) {
+                    alert("未选择资溝");
+                    return;
+                }
+                selectResParam = undefined;
+
+                params.url = encodeURI("http://download.appst.cnpc.com.cn:2052/rxfilex/cosupload");
+                params.success = "uploadResultCallBack";
+                params.fail = "uploadResultCallBack";
+                params.percent = "uploadResultCallBack";
+                ruixin.uploadResource(params);
+            }
+
+            //创建签坝
+            function testCreateSignature() {
+                var params = { "success": "selectCallback" };
+                ruixin.createSignature(params);
+            }
+            //选择多张图片
+            function testSelectMultiResource() {
+                var params = { "maxCount": "5", "success": "selectMultiCallback" };
+                ruixin.selectMultiResource(params);
+            }
+
+            //选多图回调函数
+            function selectMultiCallback(msg) {
+                var arr = msg.resArray;
+
+                var result = "";
+                var div = document.getElementById("image");
+                $('#image').empty();
+                var table = document.createElement("table");//创建table
+                var images = new Array();
+                for (var i = 0; i < arr.length; i++) {
+                    //显示图片
+                    var row = table.insertRow();
+                    var cell = row.insertCell();
+                    images[i] = document.createElement("img");
+                    images[i].src = arr[i].resSource;
+                    images[i].alt = i;
+                    cell.appendChild(images[i])
+
+                    arr[i].resSource = "已显示"
+                    result = result + JSON.stringify(arr[i]) + "</br>";
+                }
+                div.appendChild(table);
+                showResult(JSON.stringify(msg));
+
+                selectResParam = msg;
+            }
+
+            //上传多张图片
+            function testUploadMultiResource() {
+                uploadCallbackResultMsg = "";
+                var params = selectResParam;
+                if (params == undefined) {
+                    alert("未选择资溝");
+                    return;
+                }
+                selectResParam = undefined;
+
+                params.url = encodeURI("http://download.appst.cnpc.com.cn:2052/rxfilex/cosupload");
+                params.success = "uploadResultCallBack";
+                params.fail = "uploadResultCallBack";
+                params.percent = "uploadResultCallBack";
+                ruixin.uploadMultiResource(params);
+            }
+
+
+            //上传戝功〝失败〝进度回调
+            function uploadResultCallBack(msg) {
+                uploadCallbackResultMsg = uploadCallbackResultMsg + JSON.stringify(msg) + "</br>";
+                showResult(uploadCallbackResultMsg);
+            }
+
+
+
+            function testHideBackBtn() {
+                var params = { "success": "commonCallback" };
+                ruixin.hideBackButton(params);
+            }
+
+            function testAddOpenUrlMenu() {
+                var params = {
+                    "menuID": "openBaidu",
+                    "menuText": "打开百度",
+                    "interactiveName": "openUrl",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "url_open": encodeURI("http://www.baidu.com"),
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testAddJSCallbackMenu() {
+                var params = {
+                    "menuID": "jsCallbackMenu",
+                    "menuText": "js回调",
+                    "interactiveName": "jsCallback",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "menuClickCallback": "commonCallback",
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testAddCopyUrlMenu() {
+                var params = {
+                    "menuID": "copyUrlMenu",
+                    "menuText": "夝制指定链接",
+                    "interactiveName": "copyUrl",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "menuClickCallback": "commonCallback",
+                    "url_copy": encodeURI("http://www.baidu.com"),
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testAddOpenWithBrowserMenu() {
+                var params = {
+                    "menuID": "openWithBrowserMenu",
+                    "menuText": "用浝览器打开指定链接",
+                    "interactiveName": "openWithBrowser",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "url_browser": encodeURI("http://www.baidu.com"),
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testAddSendToChatMenu() {
+                var params = {
+                    "menuID": "sendToChatMenu",
+                    "menuText": "js分享",
+                    "interactiveName": "sendToChat",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "imageUrl": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160721162046257029Md/thumbnail",
+                    "title": "测试title",
+                    "summary": "测试summary",
+                    "url": "http://11.8.8.85/test/test.html",
+                    "menuClickCallback": "commonCallback",
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testAddFavoriteMenu() {
+                var params = {
+                    "menuID": "Favorite",
+                    "menuText": "js收藝",
+                    "interactiveName": "favorite",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "picUrl": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160721162046257029Md/thumbnail",
+                    "title": "测试title",
+                    "summary": "测试summary",
+                    "link": "http://11.8.8.85/test/test.html",
+                    "name": "testPage",//收藝列表显示来溝
+                    //"sourceAvatar":"http://download.appst.cnpc.com.cn:2051/rxfiles/Hzczc",//收藝列表显示来溝头僝
+                    "sourceAvatar": "http://download.appst.cnpc.com.cn:2051/rxfiles/HSE/20160721162046257029Md/thumbnail",//收藝列表显示来溝头僝
+                    "messageSource": 3,
+                    "menuClickCallback": "commonCallback",
+                    "success": "commonCallback"
+                };
+                ruixin.addInteractiveMenu(params);
+            }
+
+            function testSetFontSizeMenu() {
+                var params = {
+                    "success": "commonCallback"
+                };
+                ruixin.addSetFontSizeMenu(params);
+            }
+
+            function testOpenInBrowserMenu() {
+                var params = {
+                    "success": "commonCallback"
+                };
+                ruixin.addOpenInBrowserMenu(params);
+            }
+
+            function testSupportAutorotate() {
+                var params = {
+                    "success": "commonCallback"
+                };
+                ruixin.supportAutorotate(params);
+            }
+
+            function testEnterPubSub() {
+                var params = {
+                    "pubsubId": "70000171"
+                };
+                ruixin.enterPubSub(params);
+            }
+
+            function testEnterBarcodeScanner() {
+                var params = { "success": "commonCallback" };
+                ruixin.enterBarcodeScanner(params);
+            }
+
+            function testClickInteractiveMenu() {
+                var params = {
+                    "interactiveName": "jsCallback",
+                    "interactiveID": "",
+                    "interactiveDetailID": "",
+                    "menuClickCallback": "commonCallback",
+                };
+                ruixin.clickInteractiveMenu(params);
+            }
+
+            function testShowHint() {
+                var params = {
+                    "hintMsg": "杝示内容杝示内容杝示内容杝示内容"
+                };
+                ruixin.showHint(params);
+            }
+
+            function testEnterGroupChat() {
+                var params = {
+                    "roomJid": "wangtian03_stidqb",
+                    "success": "commonCallback"
+                };
+                ruixin.enterGroupChat(params);
+            }
+            function testSetWpsOfficeEnable() {
+                var params = {
+                    "wpsKeyEnable": "1",
+                    "success": "commonCallback"
+                };
+                ruixin.setWpsOfficeEnable(params);
+            }
+
+            function testOpenUrlScheme() {
+                var params = {
+                    "urlScheme": "ykxcfk://abc",
+                    "success": "commonCallback"
+                };
+                ruixin.openUrlScheme(params);
+            }
+
+            function testReSetSubAppUnReadNum() {
+                var params = {
+                    "subAppId": "EventAlarm",
+                    "unReadNum": 5,
+                    "displayType": 1,
+                    "success": "commonCallback"
+                };
+                ruixin.reSetSubAppUnReadNum(params);
+            }
+            function testReturnBacklog() {
+                var params = {
+
+                };
+                ruixin.returnBacklog(params);
+            }
+
+
+            var userAgentMsg;
+            function testUserAgent() {
+                userAgentMsg = undefined;
+                userAgentMsg = navigator.userAgent + "</br>" + ruixin.isInRuixin();
+                showResult(userAgentMsg);
+            }
+
+            function testOpenSDKVersiont() {
+                var params = {
+                    "success": "commonCallback"
+                };
+                ruixin.openSDKVersion(params);
+            }
+
+            function showPreview(source) {
+                var file = source;
+                alert(source);
+                if (window.FileReader) {
+                    alert("has file reader");
+                    var fr = new FileReader();
+                    fr.onloadend = function (e) {
+                        alert(e.target);
+                        document.getElementById("portrait").src = e.target.result;
+                    };
+                    fr.readAsDataURL(file);
+                }
+            }
+
+            function testScanBarcode() {
+                var params = { "success": "commonCallback" };
+                ruixin.scanBarcode(params);
+            }
+
+            function testOpenStepCounter() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.openStepCounter(params);
+            }
+
+            function testGetStepCount() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getStepCount(params);
+            }
+
+            function testGetStepCountByDate() {
+                var params = { "timeStamp": "2017-03-16", "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getStepCountByDate(params);
+            }
+
+            function testStartRealTimeStepCount() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.startRealTimeStepCount(params);
+            }
+
+            function testFinishRealTimeStepCount() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.finishRealTimeStepCount(params);
+            }
+
+
+            function testStartLocate() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.startLocate(params);
+            }
+
+            function testGetCurrentAddr() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getCurrentAddr(params);
+            }
+
+            //查询网络状思
+            function testCheckNetwork() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.checkNetwork(params);
+            }
+
+            function testGetHeadPhotoByJid() {
+                var params = { "jid": "tianguangwen", "success": "setHeadImage", "fail": "commonCallback" };
+                ruixin.getHeadPhotoByJid(params);
+            }
+
+            function testOpenUrl() {
+                var str = encodeURI("http://e.cnpc.com.cn:66/internal_test/RUIXIN/testPage.html");
+                var params = { "url_open": str, "supportAutorotate": "1" };
+                ruixin.openUrl(params);
+            }
+
+            function testOpenUrlWithCheck() {
+                var str = encodeURI("http://www.baidu.com");
+                var params = { "url_open": str, "supportAutorotate": "1", "checkLoginStatus": "1" };
+                ruixin.openUrl(params);
+            }
+
+            function testToEhuiMeet() {
+                var params = { "meetId": "111" };
+                ruixin.toEhuiMeet(params);
+            }
+
+            function setHeadImage(msg) {
+                document.getElementById("portrait").src = msg.headImgSrc;
+            }
+
+            function testSupportErrorPage() {
+                var params = { "isSupport": "0", "success": "commonCallback" };
+                ruixin.supportErrorPage(params);
+            }
+
+            function testClientType() {
+                if (ruixin.isInAndroid()) {
+                    showResult("In Android");
+                } else if (ruixin.isInIOS()) {
+                    showResult("In iOS");
+                } else {
+                    showResult("I don't know");
+                }
+            }
+
+            function testSetListenerCallback() {
+                var params = { "willAppear": "pageWillAppear", "success": "commonCallback" };
+                ruixin.setListenerCallback(params);
+            }
+
+            function pageWillAppear(msg) {
+                alert("回调成功");
+            }
+
+            function testCcbMorePay(payType) {
+                var params = { "payType": payType, "params": "params", "success": "commonCallback" };
+                ruixin.ccbMorePay(params);
+            }
+
+            function testWechatPay() {
+                var params = { "params": "params", "success": "commonCallback" };
+                var params = { "params": "params", "success": "commonCallback" };
+                ruixin.wechatPay(params);
+            }
+
+            function testZyReader() {
+                var params = { "zyReaderScheme": "zyReaderScheme", "success": "commonCallback" };
+                ruixin.zyReader(params);
+            }
+
+            function testReturnToLogin() {
+                var params = { "username": "1111", "success": "commonCallback" };
+                ruixin.returnToLogin(params);
+            }
+
+
+            function testIsInstallApp() {
+                //"com.richfit.uc.RXCom://"
+                //ykdp://
+                //ykxcfk://abc
+                var params = { "androidPackageName": "com.tencent.mobileqq", "urlScheme": "ykdp://abc", "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.isInstallApp(params);
+            }
+
+            function testActionStatistic() {
+                var params = { "action": "EnterApprovalDetailsPage", "extend_json": "" };
+                ruixin.actionStatistic(params);
+            }
+
+            function testRecognizeQRCode() {
+                var params = { "qrCodeBlob": "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", "isDirect": "1", "extend_json": "" };
+                ruixin.recognizeQRCode(params);
+            }
+
+            function testGetDeviceId() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getDeviceId(params);
+            }
+
+            function testGetIpconfig() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getIpconfig(params);
+            }
+
+            function testGetWifiInfo() {
+                var params = { "success": "commonCallback", "fail": "commonCallback" };
+                ruixin.getWifiInfo(params);
+            }
+
+            function testIamAuth() {
+                var strName=document.getElementById("iam_username").value;
+                var strPass=document.getElementById("iam_password").value;
+                var params = { "success": "commonCallback", "fail": "commonCallback","username":strName,"password":strPass };
+                ruixin.iamAuth(params);
+            }
+            
+
+
+            //回调函数
+            function commonCallback(msg) {
+                showResult(JSON.stringify(msg));
+            }
+
+            //显示结果
+            function showResult(result) {
+                $('#result').empty();
+                var resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = result;
+                resultDiv.style.color = "Red";
+            }
+
+        </script>
+        <ul>
+            <li class='name' data-coheade='回调结果显示'>
+                <div id="result">
+                </div>
+            </li>
+
+            <li class='name' data-coheade='Get请求'>
+                <a href='#' onclick='testGet();'>get</a>
+                <!--<a href='javascript:testGet();'>get</a>-->
+            </li>
+            <li class='name' data-coheade='Post请求'>
+                <a href='#' onclick='testPost();'>post</a>
+                <!--<a href='javascript:testPost();'>post</a>-->
+            </li>
+            <li class='name' data-coheade="Android or iOS">
+                <a href='#' onclick='testClientType();'>TestClientType</a>
+            </li>
+            <li class='name' data-coheade="设置返回时回调函数">
+                <a href='#' onclick='testSetListenerCallback();'>setListenerCallback</a>
+            </li>
+            <li class='name' data-coheade='测试JS接口'>
+                <a href='#' onclick='testConfig();'>config</a>
+                <!--<a href='javascript:testConfig();'>config</a>-->
+            </li>
+            <li class='name' data-coheade='测试客户端openapi JS SDK版本判断'>
+                <a href='#' onclick='testOpenSDKVersiont();'>openSDKVersiont</a>
+            </li>
+            <li class='name' data-coheade='测试UserAgent'>
+                <a href='#' onclick='testUserAgent();'>testUserAgent</a>
+            </li>
+            <li class='name' data-coheade='隐藏分享按钮'>
+                <a href='#' onclick='testHideShare();'>hideShareButton</a>
+            </li>
+            <li class='name' data-coheade='隐藏导航条标题'>
+                <a href='#' onclick='testHideTitle();'>hideWebViewTitle</a>
+            </li>
+            <li class='name' data-coheade='设置标题'>
+                <a href='#' onclick='testSetTitle();'>setWebViewTitle</a>
+            </li>
+            <li class='name' data-coheade='隐藏返回按钮'>
+                <a href='#' onclick='testHideBackBtn();'>hideBackButton</a>
+            </li>
+            <li class='name' data-coheade='显示提示'>
+                <a href='#' onclick='testShowHint();'>showHint</a>
+            </li>
+            <li class='name' data-coheade='添加菜单（字体设置）'>
+                <a href='#' onclick='testSetFontSizeMenu();'>addSetFontSizeMenu</a>
+            </li>
+            <li class='name' data-coheade='添加菜单（用浏览器打开当前页面）'>
+                <a href='#' onclick='testOpenInBrowserMenu();'>addOpenInBrowserMenu</a>
+            </li>
+            <li class='name' data-coheade='旋转开关'>
+                <a href='#' onclick='testSupportAutorotate();'>supportAutorotate</a>
+            </li>
+            <li class='name' data-coheade='显示错误页（iOS有效)'>
+                <a href='#' onclick='testSupportErrorPage();'>supportErrorPage</a>
+            </li>
+            <li class='name' data-coheade='关闭当前页面'>
+                <a href='#' onclick='testClosePage();'>closePage</a>
+            </li>
+
+            <li class='name' data-coheade='查看人员详情'>
+                <a href='#' onclick='testShowUserInfo();'>showUserInfo</a>
+            </li>
+            <li class='name' data-coheade='发起单人会话'>
+                <a href='#' onclick='testChat();'>chat</a>
+            </li>
+            <li class='name' data-coheade='拨打电话'>
+                <a href='#' onclick='testTelePhoneCall();'>telePhoneCall</a>
+            </li>
+            <li class='name' data-coheade='获取用户瑞信头像'>
+                <a href='#' onclick='testGetHeadPhotoByJid();'>getHeadPhotoByJid</a>
+            </li>
+            <li class='name' data-coheade='显示头像图片'>
+                <img id="portrait">
+            </li>
+            <li class='name' data-coheade='获取当前用户 token'>
+                <a href='#' onclick='testUserInfo();'>getUserInfo</a>
+            </li>
+            <li class='name' data-coheade="获取设备唯一码">
+                <a href='#' onclick='testGetDeviceId();'>getDeviceId</a>
+            </li>
+            <li class='name' data-coheade="获取设备网络相关信息">
+                <a href='#' onclick='testGetIpconfig();'>getIpconfig</a>
+            </li>
+            <li class='name' data-coheade="获取设备Wifi连接信息">
+                <a href='#' onclick='testGetWifiInfo();'>getWifiInfo</a>
+            </li>
+            <li class='name' data-coheade='通过统一身份认证SDK2.0进行校验 (内部接口）'>
+                    用户名：<br>
+                    <input type="text" id="iam_username">
+                    <br>
+                    密码：<br>
+                    <input type="text" id="iam_password" >
+                    <br><br>
+                    <input type="button" value="认 证" onclick='testIamAuth()' >
+            </li>
+            <li class='name' data-coheade='返回上一级页面'>
+                <a href='javascript:testGoBackPreviousPage();'>goBackPreviousPage</a>
+            </li>
+            <li class='name' data-coheade='文档在线预览'>
+                <a href='#' onclick='testDocPreview();'>docPreview</a>
+            </li>
+            <li class='name' data-coheade='扫一扫并返回结果'>
+                <a href='#' onclick='testScanBarcode();'>scanBarcode</a>
+            </li>
+            <li class='name' data-coheade='创建签名'>
+                <a href='#' onclick='testCreateSignature();'>createSignature</a>
+            </li>
+            <li class='name' data-coheade='选择资源并上传'>
+                <a href='#' onclick='testSelectAndUpload();'>selectResourceAndUpload</a>
+            </li>
+            <li class='name' data-coheade='选择资源'>
+                <a href='#' onclick='testSelect();'>selectResource</a>
+            </li>
+            <li class='name' data-coheade='上传资源'>
+                <a href='#' onclick='testUpload();'>uploadResource</a>
+            </li>
+            <li class='name' data-coheade='显示图片'>
+                <img id="picture">
+            </li>
+            <li class='name' data-coheade='选择多个资源'>
+                <a href='#' onclick='testSelectMultiResource();'>selectMultiResource</a>
+            </li>
+            <li class='name' data-coheade='上传多个资源'>
+                <a href='#' onclick='testUploadMultiResource();'>uploadMultiResource</a>
+            </li>
+            <li class="name" data-coheade='显示图片'>
+                <div id="image" align="center">
+                </div>
+            </li>
+            <li class='name' data-coheade='打开设备计步功能'>
+                <a href='#' onclick='testOpenStepCounter();'>openStepCounter</a>
+            </li>
+            <li class='name' data-coheade='获取当前步数'>
+                <a href='#' onclick='testGetStepCount();'>getStepCount</a>
+            </li>
+            <li class='name' data-coheade='获取从起始日期开始至今天，每天的运动步数信息'>
+                <a href='#' onclick='testGetStepCountByDate();'>getStepCountByDate</a>
+            </li>
+            <li class='name' data-coheade='开始实时记步'>
+                <a href='#' onclick='testStartRealTimeStepCount();'>startRealTimeStepCount</a>
+            </li>
+            <li class='name' data-coheade='结束实时记步，获取这段时间的运动步数'>
+                <a href='#' onclick='testFinishRealTimeStepCount();'>finishRealTimeStepCount</a>
+            </li>
+            <li class='name' data-coheade='开始定位'>
+                <a href='#' onclick='testStartLocate();'>startLocate</a>
+            </li>
+            <li class='name' data-coheade='获取当前位置信息'>
+                <a href='#' onclick='testGetCurrentAddr();'>getCurrentAddr</a>
+            </li>
+            <li class='name' data-coheade='临时存储测试-保存'>
+                <a href='#' onclick='testStore();'>storeKeyValue</a>
+            </li>
+            <li class='name' data-coheade='临时存储测试-读取'>
+                <a href='#' onclick='testLoad();'>loadKeyValue</a>
+            </li>
+            <li class='name' data-coheade='进入子应用'>
+                <a href='#' onclick='testEnterSubApp();'>enterSubApp</a>
+            </li>
+            <li class='name' data-coheade='重设子应用未读消息数'>
+                <a href='#' onclick='testReSetSubAppUnReadNum();'>reSetSubAppUnReadNum</a>
+            </li>
+            <li class='name' data-coheade='添加菜单（js回调）'>
+                <a href='#' onclick='testAddJSCallbackMenu();'>addJSCallbackMenu</a>
+            </li>
+            <li class='name' data-coheade='判断是否已安装第三方应用'>
+                <a href='#' onclick='testIsInstallApp();'>isInstallApp</a>
+            </li>
+            <li class='name' data-coheade='统计用户行为'>
+                <a href='#' onclick='testActionStatistic();'>actionStatistic</a>
+            </li>
+            <li class='name' data-coheade='识别二维码'>
+                <a href='#' onclick='testRecognizeQRCode();'>recognizeQRCode</a>
+            </li>
+
+            <li class='name' data-coheade='分享内容定制'>
+                <a href='#' onclick='testSetShareContent();'>setShareContent</a>
+            </li>
+            <li class='name' data-coheade='添加分享到QQ菜单'>
+                <a href='#' onclick='testAddQQMenu();'>addQQMenu</a>
+            </li>
+            <li class='name' data-coheade='添加分享到新浪微博菜单'>
+                <a href='#' onclick='testAddSinaMenu();'>addSinaMenu</a>
+            </li>
+            <li class='name' data-coheade='添加分享到微信收藏菜单'>
+                <a href='#' onclick='testAddWeixinFavoriteMenu();'>addWeixinFavoriteMenu</a>
+            </li>
+            <li class='name' data-coheade='添加分享到微信朋友圈菜单'>
+                <a href='#' onclick='testAddWeixinCircleMenu();'>addWeixinCircleMenu</a>
+            </li>
+            <li class='name' data-coheade='添加分享到微信好友菜单'>
+                <a href='#' onclick='testAddWeixinMenu();'>addWeixinMenu</a>
+            </li>
+            <li class='name' data-coheade='添加随机菜单'>
+                <a href='#' onclick='testAddRandomMenu();'>addRandomMenu</a>
+            </li>
+            <li class='name' data-coheade='添加QQ、微信、微信朋友圈菜单'>
+                <a href='#' onclick='testAddQQWeixinMenu();'>addQQWeixinMenu</a>
+            </li>
+
+
+            <li class='name' data-coheade='进入公众号'>
+                <a href='#' onclick='testEnterPubSub();'>enterPubSub</a>
+            </li>
+            <li class='name' data-coheade='进讨论组'>
+                <a href='#' onclick='testEnterGroupChat();'>enterGroupChat</a>
+            </li>
+            <li class='name' data-coheade='通用跳转'>
+                <a href='#' onclick='testClickInteractiveMenu();'>clickInteractiveMenu</a>
+            </li>
+            <li class='name' data-coheade='进入扫一扫'>
+                <a href='#' onclick='testEnterBarcodeScanner();'>enterBarcodeScanner</a>
+            </li>
+            <li class='name' data-coheade='在新页面打开链接'>
+                <a href='#' onclick='testOpenUrl();'>openUrl</a>
+            </li>
+            <li class='name' data-coheade='在新页面打开链接（打开链接判断登录状态）'>
+                <a href='#' onclick='testOpenUrlWithCheck();'>openUrlWithCheck</a>
+            </li>
+            <li class='name' data-coheade='通过 url Scheme打开第三方应用'>
+                <a href='#' onclick='testOpenUrlScheme();'>openUrlScheme</a>
+            </li>
+            <li class='name' data-coheade='返回待办列表'>
+                <a href='#' onclick='testReturnBacklog();'>returnBacklog(待办)</a>
+            </li>
+            <li class='name' data-coheade='易会SDK'>
+                <a href='#' onclick='testToEhuiMeet();'>toEhuiMeet</a>
+            </li>
+            <li class='name' data-coheade="建行支付JS接口：ccbMorePay">
+                <div>
+                    <ol type="circle">
+                        <li'>
+                            <a href='#' onclick='testCcbMorePay("1");'>建行综合支付</a>
+                        </li>
+                        <li >
+                            <a href='#' onclick='testCcbMorePay("2");'>建行龙支付</a>
+                        </li>
+                        <li >
+                            <a href='#' onclick='testCcbMorePay("3");'>微信支付</a>
+                        </li>
+                    </ol>
+                </div>
+            </li>
+            <li class='name' data-coheade="微信支付JS接口">
+                <a href='#' onclick='testWechatPay();'>wechatPay </a>
+            </li>
+            <li class='name' data-coheade="跳转掌阅JS接口">
+                <a href='#' onclick='testZyReader();'>zyReader </a>
+            </li>
+            <li class='name' data-coheade="回到登录界面">
+                <a href='#' onclick='testReturnToLogin();'>returnToLogin </a>
+            </li>
+
+
+
+            <li class='name' data-coheade='设置wps的权限'>
+                <a href='#' onclick='testSetWpsOfficeEnable();'>setWpsOfficeEnable</a>
+            </li>
+
+
+
+            <li class='name' data-coheade='获取当前网络状态'>
+                <a href='#' onclick='testCheckNetwork();'>checkNetwork</a>
+            </li>
+
+
+            <li class='name' data-coheade='Android1'>
+                <img src="file://storage/sdcard0/baidu/searchbox/preset/preset4.2/pic/quick_search_widget_morning.jpg">
+            </li>
+
+            <li class='name' data-coheade='测试获取相册图片'>
+                <input type="file" accept="video/*;capture=camcorder">
+                <input type="file" accept="image/*;capture=camera">
+                <input type="file" accept="image/*" />
+                <input type="file" accept="audio/*;capture=microphone">
+                <input type="file" id="take-picture" accept="image/*">
+                <input type="button" value="aaa" onclick="testTelePhoneCall();">
+            </li>
+
+
+
+
+
+
+        </ul>
+    </body>
+
+    </html>

@@ -32,6 +32,14 @@
 	
 	<a href="javascript:void(0);" onclick="selectResource(1)" >调用手机拍照/录像/相册功能</a>
 	<a href="javascript:void(0);" onclick="selectResource(2)" >上传资源</a>
+	<li class='name' data-coheade='测试获取相册图片'>
+	    <input id="testFile" type="file" accept="video/*;capture=camcorder" onchange="getFile()">
+	    <input type="file" accept="image/*;capture=camera">
+	    <input type="file" accept="image/*" />
+	    <input type="file" accept="audio/*;capture=microphone">
+	    <input type="file" id="take-picture" accept="image/*">
+	    <input type="button" value="aaa" onclick="testTelePhoneCall();">
+	</li>
 	
 	起点名称：<input id='start'/>
 	终点名称：<input id='end'/>
@@ -44,6 +52,11 @@
   </body>
   <script>
 	var ruixin = new RuixinApi();
+	function getFile(){
+		var file = document.getElementById('testFile');
+		console.log(file.files[0]);
+		alert(file.files[0].name);
+	}
 	function upSuccess(res){
 		alert(JSON.stringify(res));
 	}
