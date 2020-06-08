@@ -1,0 +1,378 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <title>多级表头示例</title>
+        <style type="text/css">
+            table {
+                border: none;
+                border-collapse: collapse;
+                border-color: #D8DFE6;
+            }
+            
+            table thead {
+                font-size: 12px;
+                background: #F3FDFF;
+            }
+            
+            table tbody td {
+                font-size: 10px;
+            }
+            
+            table tbody tr {
+                height: 50px;
+            }
+
+            td,th {
+                font-style: normal;
+                font-weight: normal;
+                text-align: center;
+            }
+            
+            tr{
+                height: 22px;
+            }
+        
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <input type="button" onclick="print()" value="打印本页" />
+            <div id='printTable'>
+                <table border="1" cellspacing="0" cellpadding="10" width="80%">
+                    <!-- 表头 -->
+                    <thead>
+                    </thead>
+                    <!-- 表数据-->
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+        <script type="text/javascript"> 
+            var headerTree = [
+                {
+                    filed : 'index',
+                    title : '序号',
+                    align : 'center',
+                    rowspan:4,
+                    colspan:1
+                },
+                {
+                    filed : 'ZDuser',
+                    title : '终端使用人',
+                    align : 'center',
+                    rowspan:4,
+                    colspan:1
+                },
+                {
+                    filed : 'workInfo',
+                    title : '工作开展情况',
+                    align : 'center',
+                    rowspan:1,
+                    colspan:16,
+                    children : [
+                        {
+                            filed : 'totalWork',
+                            title : '工作量总计',
+                            align : 'center',
+                            rowspan:3,
+                            colspan:1,
+                        },
+                        {
+                            filed : 'cjInfo',
+                            title : '采集情况',
+                            align : 'center',
+                            rowspan:1,
+                            colspan:9,
+                            children:[{
+                                filed : 'cjInfo',
+                                title : '人口',
+                                align : 'center',
+                                rowspan:1,
+                                colspan:3,
+                                children:[
+                                {
+                                    filed : 'cjInfo',
+                                    title : '总数',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '户籍',
+                                    align : 'center',
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '流动',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                }
+                                ]
+                            },
+                            {
+                                filed : 'cjInfo',
+                                title : '房屋',
+                                align : 'center',
+                                rowspan:1,
+                                colspan:3,
+                                children:[
+                                {
+                                    filed : 'cjInfo',
+                                    title : '总数',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '自住',
+                                    align : 'center',
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '出租',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                }
+                                ]
+                            },
+                            {
+                                filed : 'cjInfo',
+                                title : '车辆',
+                                align : 'center', 
+                                rowspan:1,
+                                colspan:3,
+                                children:[
+                                {
+                                    filed : 'cjInfo',
+                                    title : '总数',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '机动车',
+                                    align : 'center',
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '非机动车',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                }
+                                ]
+                            }]
+                        },
+                        {
+                            filed : 'checkInfo',
+                            title : '检查情况',
+                            align : 'center',
+                            rowspan:1,
+                            colspan:6,
+                            children:[
+                            {
+                                filed : 'cjInfo',
+                                title : '房屋隐患',
+                                align : 'center',
+                                rowspan:1,
+                                colspan:3,
+                                children:[
+                                {
+                                    filed : 'cjInfo',
+                                    title : '总数',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '生活安全',
+                                    align : 'center',
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '出租管理',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                }
+                                ]
+                            
+                            },
+                            {
+                                filed : 'cjInfo',
+                                title : '房屋管理',
+                                align : 'center',
+                                rowspan:1,
+                                colspan:3,
+                                children:[
+                                {
+                                    filed : 'cjInfo',
+                                    title : '总数',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '房屋安全',
+                                    align : 'center',
+                                    rowspan:1,
+                                    colspan:1
+                                },
+                                {
+                                    filed : 'cjInfo',
+                                    title : '房屋功能',
+                                    align : 'center', 
+                                    rowspan:1,
+                                    colspan:1
+                                }
+                                ]
+                            }
+                            ]
+                        }
+                    ]
+                
+                }
+            ];
+            var tableData = [{
+                key1:11111111111111,
+                key2:2,
+                key3:3, 
+                key4:4,
+                key5:5,
+                key6:6,
+                key7:7,
+                key8:8,
+                key9:9,
+                key10:10,
+                key11:11,
+                key12:12,
+                key13:13,
+                key14:14,
+                key15:15,
+                key16:16,
+                key17:17,
+                key18:18
+            },{
+                key1:11111111111111,
+                key2:22,
+                key3:23, 
+                key4:24,
+                key5:25,
+                key6:26,
+                key7:27,
+                key8:28,
+                key9:29,
+                key10:30,
+                key11:31,
+                key12:32,
+                key13:33,
+                key14:34,
+                key15:35,
+                key16:36,
+                key17:37,
+                key18:38
+            }]
+            
+            /* 设置多级表头 */
+            var trIndex = 1,className= '', leaves = {};
+			function format(headers){
+				var recur = function(arr, parent){
+					$.each(arr,function(i,n){
+						n.cols = 0;
+						if(n.children){
+							trIndex++;
+							recur(n.children, n);
+							trIndex--;
+							parent ? parent.cols += n.cols : '';
+						}else{
+							n.cols = 1;
+							parent && parent.cols++;
+							leaves[trIndex] ? leaves[trIndex].push(n) : leaves[trIndex] = [n];
+						}
+                   });
+				}, depth = 0;
+				recur(headers);
+				depth = Math.max.apply(null,Object.keys(leaves).map(Number));
+				for(let i in leaves){
+				    if(i < depth){
+					     for(let s of leaves[i]){
+					         s.rows = depth - i + 1;
+					   }
+					}
+				}
+			}
+            function setTableTh(arr){
+                $.each(arr,function(i,n){
+                    className = 'head'+trIndex;
+                    if($('.'+className).length===0){
+                        var tr = document.createElement("tr");
+                        tr.setAttribute("class",className);
+                        $('thead')[0].appendChild(tr);
+                    }else{
+                        var tr =$('.'+className)[0];
+                    }
+                    var th = document.createElement("th");
+                    th.innerHTML = n.title; 
+                    th.setAttribute('rowspan',n.rows);
+                    th.setAttribute('colspan',n.cols);
+                    if(n.children){
+                        trIndex ++;
+                        setTableTh(n.children);
+                        trIndex --;
+                    }
+                    tr.appendChild(th);
+                })
+            }
+              
+            /* 增加表行数据 */
+            function setTableTd(data){
+                var tbody = $('tbody')[0];
+                $.each(data,function(i,n){
+                    var tr = document.createElement("tr");
+                    $.each(n,function(name,data){
+                        var td = document.createElement("td");
+                        td.innerHTML = data; 
+                        tr.appendChild(td);
+                    })
+                    tbody.appendChild(tr);
+                })
+            }
+            
+            /* 打印 */
+            function print(){
+                $("input[type='button']").hide();
+                window.print();
+                $("input[type='button']").show();
+            }
+
+            window.onerror=function (){
+                console.log('error');
+            }
+			format(headerTree);
+            setTableTh(headerTree);
+			console.log(headerTree);
+            setTableTd(tableData)
+        </script>
+    </body>
+
+</html>
+
+
