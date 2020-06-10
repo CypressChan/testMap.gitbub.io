@@ -18,6 +18,9 @@
 	<a href="bdapp://map/navi">打开百度地图</a>
 	<a href="seeyon://m3">打开移动办公</a>
 	
+	<button onclick="openAPP('seeyon://m3')">创建标签打开移动办公</button>
+	<button onclick="openAPP('www.baidu.com')">直接打开页面</button>
+	
 	<p id="demo">点击这个按钮，获得您的坐标：</p>
 	<button onclick="getLocation()">试一下</button>
 	
@@ -48,17 +51,32 @@
     <a href="javascript:void(0);" onclick="jump(2)">百度地图</a>
 	
 	<p>移动大厅测试</p>
-	<input type="file" name="file1" id="file1" accept="image/*" >
-	<xmp><input type="file" name="file1" id="file1" accept="image/*" ></xmp>
-	<input type="file" name="file2" id="file2" accept="audio/*" >
-	<xmp><input type="file" name="file2" id="file2" accept="audio/*" ></xmp>
-	<input type="file" name="file3" id="file3" accept="video/*" >
-	<xmp><input type="file" name="file3" id="file3" accept="video/*" ></xmp>
+	<input class="change-photo-btn" style="width:100%" type="file" id="image" accept="image/*" capture="environment">
+	<xmp><input class="change-photo-btn" style="width:100%" type="file" id="image" accept="image/*" capture="environment"></xmp>
+	<input class="change-photo-btn" style="width:100%" type="file">
+	<xmp><input class="change-photo-btn" style="width:100%" type="file"></xmp>
+	
 <!--<a href="androidamap://navi?sourceApplication=appname&amp;poiname=fangheng&amp;lat=36.547901&amp;lon=104.258354&amp;dev=1&amp;style=2">导航</a>
 <a href="amapuri://route/plan/?sid=&slat=39.92848272&slon=116.39560823&sname=A&did=&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&t=0">测试</a>
 -->	  
   </body>
   <script>
+	 function openAPP(pageUrl){
+		 let a = document.createElement('a');
+		 a.setAttribute('href', pageUrl);
+		 a.setAttribute('target', '_blank');
+		 a.setAttribute('id', 'openAPP');
+		 // 防止反复添加
+		 if(document.getElementById('openAPP')) {
+		 	document.body.removeChild(document.getElementById('openAPP'));
+		 }
+		 document.body.appendChild(a);
+		 a.click();	
+	 }
+	  
+	  
+	  
+	  
 	var ruixin = new RuixinApi();
 	function getFile(){
 		var file = document.getElementById('testFile');
@@ -122,6 +140,7 @@ function getLocation()
  
 function showPosition(position)
   {
+	  alert(JSON.stringify(position));
   x.innerHTML="Latitude: " + position.coords.latitude + 
   "<br />Longitude: " + position.coords.longitude;	
   } 
