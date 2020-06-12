@@ -18,8 +18,12 @@
 	<a href="bdapp://map/navi">打开百度地图</a>
 	<a href="seeyon://m3">打开移动办公</a>
 	
+	<a href="zsyenterprisehall.petrochina.gxsh.home://taobao://">移动大厅打开淘宝</a>
+	<a href="zsyenterprisehall.petrochina.gxsh.home://bdapp://map/navi">移动大厅打开百度地图</a>
+	<a href="zsyenterprisehall.petrochina.gxsh.home://seeyon://m3">移动大厅打开移动办公</a>
+	
 	<button onclick="openAPP('seeyon://m3')">创建标签打开移动办公</button>
-	<button onclick="openAPP('www.baidu.com')">直接打开页面</button>
+	<button onclick="openAPP('http://www.baidu.com')">直接打开页面</button>
 	
 	<p id="demo">点击这个按钮，获得您的坐标：</p>
 	<button onclick="getLocation()">试一下</button>
@@ -140,7 +144,7 @@ function getLocation()
  
 function showPosition(position)
   {
-	  alert(JSON.stringify(position));
+	  alert(JSON.stringify(position.coords));
   x.innerHTML="Latitude: " + position.coords.latitude + 
   "<br />Longitude: " + position.coords.longitude;	
   } 
