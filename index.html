@@ -9,6 +9,7 @@
 	  a, input{display:block;margin:10px;}
 	</style>
     <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
   <body>
     <noscript>
@@ -32,6 +33,8 @@
 	
 	<p id="demo">点击这个按钮，获得您的坐标：</p>
 	<button onclick="getLocation()">试一下</button>
+	
+	<button onclick="getLocationIOS()">IOS下定位</button>
 	
 	<input type="file" accept="image/*" capture="camera">调用设备摄像头
 	<input type="file" accept="image/*" multiple>多选
@@ -76,6 +79,22 @@
 -->	  
   </body>
   <script>
+	  
+	  function getLocationIOS(){
+		  var options = {
+		  enableHighAccuracy: true,
+		  maximumAge: 30000,
+		  timeout: 12000
+		  }
+		  window.locationCallback = function(res){
+			  alert(JSON.stringify(res))
+		  //...do somethings
+		  }
+		  var str = '<iframe src="javascript:(function(){ window.navigator.geolocation.getCurrentPosition(function(position){parent && parent.locationCallback && parent.locationCallback(null,position);}, function(err){parent && parent.locationCallback && parent.locationCallback(err);}, {enableHighAccuracy : '+ options.enableHighAccuracy +', maximumAge : '+ options.maximumAge +', timeout :'+ options.timeout +'});})()" style="display:none;"></iframe>'
+		  $(str).appendTo('body')
+	  }
+	  
+	  
 	 function openAPP(pageUrl){
 		 let a = document.createElement('a');
 		 a.setAttribute('href', pageUrl);
