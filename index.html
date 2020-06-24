@@ -8,7 +8,8 @@
 	<style>
 	  a, input{display:block;margin:10px;}
 	</style>
-    <script src='http://e.cnpc.com.cn:66/js/api/RuixinOpenAPI.js'></script>
+    <script src='js/api/RuixinOpenAPI.js'></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
   <body>
@@ -67,6 +68,7 @@
 	终点名称：<input id='end'/>
     <a href="javascript:void(0);" onclick="jump(1)">高德地图</a>
     <a href="javascript:void(0);" onclick="jump(2)">百度地图</a>
+	<a href="bdapp://map/page/realtimebus?mode=NORMAL_MAP_MODE&src=andr.baidu.openAPIdemo">打开实时公交页面</a>
 	
 	<p>移动大厅测试</p>
 	<input class="change-photo-btn" style="width:100%" type="file" id="image" accept="image/*" capture="environment">
@@ -86,11 +88,12 @@
 		  maximumAge: 30000,
 		  timeout: 12000
 		  }
-		  window.locationCallback = function(err, suc){
-			  alert(JSON.stringify(arguments))
+		  window.locationCallback = function(pos){
+			  alert(JSON.stringify(pos))
 		  //...do somethings
 		  }
-		  var str = '<iframe src="javascript:(function(){ window.navigator.geolocation.getCurrentPosition(function(position){parent && parent.locationCallback && parent.locationCallback(null,position);}, function(err){parent && parent.locationCallback && parent.locationCallback(err);}, {enableHighAccuracy : '+ options.enableHighAccuracy +', maximumAge : '+ options.maximumAge +', timeout :'+ options.timeout +'});})()" style="display:none;"></iframe>'
+		  // var str = '<iframe src="javascript:(function(){ window.navigator.geolocation.getCurrentPosition(function(position){parent && parent.locationCallback && parent.locationCallback(null,position);}, function(err){parent && parent.locationCallback && parent.locationCallback(err);});})()" style="display:none;"></iframe>'
+		  var str = '<iframe src="javascript:(function(){window.navigator.geolocation.getCurrentPosition(function(){alert(5)});})()" style="display:none"></iframe>'
 		  $(str).appendTo('body')
 	  }
 	  
