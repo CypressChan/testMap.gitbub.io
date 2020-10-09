@@ -16,9 +16,11 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-	<a onclick="testOpen('bdapp://map/navi')">瑞信打开百度地图</a>
-	<a onclick="testOpen('taobao://')">打开淘宝</a>
-	<a onclick="testOpen('xxnnggddxxjjgdgappurlparameter://')">瑞信打开巡检管理</a>
+	<a href="javascript:void(0);" onclick="testOpen('bdapp://map/navi')">瑞信打开百度地图</a>
+	<a href="javascript:void(0);" onclick="testOpen('taobao://')">打开淘宝</a>
+	<a href="javascript:void(0);" onclick="testOpen('xxnnggddxxjjgdgappurlparameter://')">瑞信打开巡检管理</a>
+	
+	<a href="xxnnggddxxjjgdgappurlparameter://">浏览器打开巡检管理</a>
 	
 	<span>==================================</span>
 	<a href="tel:18980057646">打电话</a>
@@ -97,6 +99,7 @@
   </body>
   <script>
 	  function testOpen(AppUrl){
+		  alert(AppUrl);
 		  let commonCallback = ()=>{};
 		  let params = {
 			"urlScheme": AppUrl,
