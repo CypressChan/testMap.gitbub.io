@@ -16,9 +16,14 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+	<a onclick="testOpen('bdapp://map/navi')">瑞信打开百度地图</a>
+	<a onclick="testOpen('taobao://')">打开淘宝</a>
+	<a onclick="testOpen('xxnnggddxxjjgdgappurlparameter://')">瑞信打开巡检管理</a>
+	
+	<span>==================================</span>
 	<a href="tel:18980057646">打电话</a>
 	<a href="taobao://">打开淘宝</a>
-	<a href="bdapp://map/navi">打开百度地图</a>
+	
 	<a href="seeyon://m3">打开移动办公</a>
 	<a href="com.skysoft.gtx://">打开18900com.skysoft.gtx://</a>
 	<a href="com.ainemo.rflink://">打开中油易连com.ainemo.rflink://</a>
@@ -91,6 +96,14 @@
 -->	  
   </body>
   <script>
+	  function testOpen(AppUrl){
+		  let commonCallback = ()=>{};
+		  let params = {
+			"urlScheme": AppUrl,
+			"success": "commonCallback"
+	      };
+		  ruixin.openUrlScheme(params);
+	  }
 	  function download1(){
 		  window.open('http://210.12.193.131:30010/files/info/1594618928883.docx');
 	  }
