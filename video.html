@@ -1,0 +1,329 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video.js 7</title>
+    <link href="css/video-js.min.css" rel="stylesheet">
+    <style>
+        body {
+            /*background-color: #191919;*/
+        }
+
+        .m {
+            width: 100%;
+            height: 100%;
+            /*margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;*/
+        }
+		#channel a{
+			display:block;
+			cursor:pointer;
+			padding:10px;
+		}
+		#channel a:link {color: blue; text-decoration:none;}
+		#channel a:visited {color:red;text-decoration:none;} 
+		#channel a:hover{color: red; text-decoration:underline;} 
+		#channel a:active{color: red; }
+		
+    </style>
+</head>
+
+<body>
+    摄像头ID（channelid）：<input type="text" id="channelid" />
+    <button id="openVideo" onclick="openVideoClick()">打开</button>
+    <button id="closeVideo" onclick="closeVideoClick()">关闭</button>
+    <br /><hr />
+    <div id="info"></div>
+    <div class="m">
+        <video id="rtmpVideo" class="video-js" controls preload="auto"  width="800" height="400" data-setup='{ "html5" : { "nativeTextTracks" : false } }'></video>
+        <script src="js/jquery-1.8.2.js"></script>
+        <script src="js/video.min.js"></script>
+        <script src="js/videojs-flash.min.js"></script>
+    </div>
+	
+	<div id="channel">
+	  <a>CCTV-1综合:rtmp://58.200.131.2:1935/livetv/cctv1</a>
+	    <a>CCTV-2财经:rtmp://58.200.131.2:1935/livetv/cctv2      </a>
+		<a>CCTV-3综艺:rtmp://58.200.131.2:1935/livetv/cctv3      </a>
+		<a>CCTV-4中文国际:rtmp://58.200.131.2:1935/livetv/cctv4  </a>
+		<a>CCTV-5体育:rtmp://58.200.131.2:1935/livetv/cctv5      </a>
+		<a>CCTV-6电影: rtmp://58.200.131.2:1935/livetv/cctv6     </a>
+		<a>CCTV-7军事农业:rtmp://58.200.131.2:1935/livetv/cctv7  </a>
+		<a>CCTV-8电视剧:rtmp://58.200.131.2:1935/livetv/cctv8    </a>
+		<a>CCTV-9记录:rtmp://58.200.131.2:1935/livetv/cctv9      </a>
+		<a>CCTV-10科教:rtmp://58.200.131.2:1935/livetv/cctv10    </a>
+		<a>CCTV-11戏曲:rtmp://58.200.131.2:1935/livetv/cctv11    </a>
+		<a>CCTV-12社会与法:rtmp://58.200.131.2:1935/livetv/cctv12</a>
+		<a>CCTV-13新闻:rtmp://58.200.131.2:1935/livetv/cctv13    </a>
+		<a>CCTV-14少儿:rtmp://58.200.131.2:1935/livetv/cctv14    </a>
+		<a>CCTV-15音乐:rtmp://58.200.131.2:1935/livetv/cctv15    </a>
+		<a>安徽卫视:rtmp://58.200.131.2:1935/livetv/ahtv         </a>
+		<a>兵团卫视:rtmp://58.200.131.2:1935/livetv/bttv         </a>
+		<a>重庆卫视:rtmp://58.200.131.2:1935/livetv/cqtv         </a>
+		<a>东方卫视:rtmp://58.200.131.2:1935/livetv/dftv         </a>
+		<a>东南卫视:rtmp://58.200.131.2:1935/livetv/dntv         </a>
+		<a>广东卫视:rtmp://58.200.131.2:1935/livetv/gdtv         </a>
+		<a>广西卫视:rtmp://58.200.131.2:1935/livetv/gxtv         </a>
+		<a>甘肃卫视:rtmp://58.200.131.2:1935/livetv/gstv         </a>
+		<a>贵州卫视:rtmp://58.200.131.2:1935/livetv/gztv         </a>
+		<a>湖北卫视:rtmp://58.200.131.2:1935/livetv/hbtv         </a>
+		<a>湖南卫视:rtmp://58.200.131.2:1935/livetv/hunantv      </a>
+		<a>河北卫视:rtmp://58.200.131.2:1935/livetv/hebtv        </a>
+		<a>河南卫视:rtmp://58.200.131.2:1935/livetv/hntv         </a>
+		<a>黑龙江卫视:rtmp://58.200.131.2:1935/livetv/hljtv      </a>
+		<a>江苏卫视:rtmp://58.200.131.2:1935/livetv/jstv         </a>
+		<a>江西卫视:rtmp://58.200.131.2:1935/livetv/jxtv         </a>
+		<a>吉林卫视:rtmp://58.200.131.2:1935/livetv/jltv         </a>
+		<a>辽宁卫视:rtmp://58.200.131.2:1935/livetv/lntv         </a>
+		<a>内蒙古卫视:rtmp://58.200.131.2:1935/livetv/nmtv       </a>
+		<a>宁夏卫视:rtmp://58.200.131.2:1935/livetv/nxtv         </a>
+		<a>青海卫视:rtmp://58.200.131.2:1935/livetv/qhtv         </a>
+		<a>四川卫视:rtmp://58.200.131.2:1935/livetv/sctv         </a>
+		<a>山东卫视:rtmp://58.200.131.2:1935/livetv/sdtv         </a>
+		<a>山西卫视:rtmp://58.200.131.2:1935/livetv/sxrtv        </a>
+		<a>陕西卫视:rtmp://58.200.131.2:1935/livetv/sxtv         </a>
+			  
+	</div>
+	
+	       <script type="text/javascript">
+            //【请求参数】---------------------------------------------------------
+            var channelid = "";	//通道20位编号
+
+            //国标请求视频类型：1：udp 2：tcp主动 3：tcp被动
+            var type = 1;
+            //视频类型：rtsp：返回rtsp地址  rtmp：返回rtmp地址 hls：返回hls地址
+            var videourltype = "rtmp";
+            var sourcestype = "rtmp/flv";
+            //基础接口地址
+            var baseUrl = "http://11.89.22.161:8060/vss";
+
+           var myPlayer;
+
+
+            //打开视频
+            function openVideoClick() {
+                channelid = $("#channelid").val();
+                //打开视频地址地址
+                var openUrl = baseUrl + "/open_stream/" + channelid + "/" + type + "/" + videourltype;
+                console.log(openUrl);
+
+
+                //获取视频流地址
+                $.get(openUrl, function (data) {
+                    console.log(data);
+                    //修改视频流地址，替换为相当路径，IP及端口由代理转换
+                    var dataUrl = data.videourl.replace('http://11.89.22.161:32035', 'http://119.4.40.28:8025');
+
+                    //显示返回信息（用于显示，实际使用可注释）
+                    $("#info").html("")
+                    $("#info").append(
+                          "<div><b>" + "openurl：</b>" + openUrl + "</div><br/>" +
+                          //"<div><b>" + "errcode：</b>" + data.errcode + "</div><br/>" +           //0表示成功，其他见错误码
+                          //"<div><b>" + "errdesc：</b>" + data.errdesc + "</div><br/>" + 		   //提示信息
+                          "<div><b>" + "strsessionid：</b>" + data.strsessionid + "</div><br/>" + //会话返回的sessionid
+                          "<div><b>" + "videourl：</b>" + data.videourl + "</div><br/>");       //rtsp地址/rtmp地址/hls地址
+
+
+                    console.log(dataUrl);
+
+                    ////设置中文
+                    //videojs.addLanguage('zh-CN', {
+                    //    "Play": "播放",
+                    //    "Pause": "暂停",
+                    //    "Current Time": "当前时间",
+                    //    "Duration": "时长",
+                    //    "Remaining Time": "剩余时间",
+                    //    "Stream Type": "媒体流类型",
+                    //    "LIVE": "直播",
+                    //    "Loaded": "加载完毕",
+                    //    "Progress": "进度",
+                    //    "Fullscreen": "全屏",
+                    //    "Non-Fullscreen": "退出全屏",
+                    //    "Mute": "静音",
+                    //    "Unmute": "取消静音",
+                    //    "Playback Rate": "播放速度",
+                    //    "Subtitles": "字幕",
+                    //    "subtitles off": "关闭字幕",
+                    //    "Captions": "内嵌字幕",
+                    //    "captions off": "关闭内嵌字幕",
+                    //    "Chapters": "节目段落",
+                    //    "Close Modal Dialog": "关闭弹窗",
+                    //    "Descriptions": "描述",
+                    //    "descriptions off": "关闭描述",
+                    //    "Audio Track": "音轨",
+                    //    "You aborted the media playback": "视频播放被终止",
+                    //    "A network error caused the media download to fail part-way.": "网络错误导致视频下载中途失败。",
+                    //    "The media could not be loaded, either because the server or network failed or because the format is not supported.": "视频因格式不支持或者服务器或网络的问题无法加载。",
+                    //    "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "由于视频文件损坏或是该视频使用了你的浏览器不支持的功能，播放终止。",
+                    //    "No compatible source was found for this media.": "无法找到此视频兼容的源。",
+                    //    "The media is encrypted and we do not have the keys to decrypt it.": "视频已加密，无法解密。",
+                    //    "Play Video": "播放视频",
+                    //    "Close": "关闭",
+                    //    "Modal Window": "弹窗",
+                    //    "This is a modal window": "这是一个弹窗",
+                    //    "This modal can be closed by pressing the Escape key or activating the close button.": "可以按ESC按键或启用关闭按钮来关闭此弹窗。",
+                    //    ", opens captions settings dialog": ", 开启标题设置弹窗",
+                    //    ", opens subtitles settings dialog": ", 开启字幕设置弹窗",
+                    //    ", opens descriptions settings dialog": ", 开启描述设置弹窗",
+                    //    ", selected": ", 选择",
+                    //    "captions settings": "字幕设定",
+                    //    "Audio Player": "音频播放器",
+                    //    "Video Player": "视频播放器",
+                    //    "Replay": "重播",
+                    //    "Progress Bar": "进度小节",
+                    //    "Volume Level": "音量",
+                    //    "subtitles settings": "字幕设定",
+                    //    "descriptions settings": "描述设定",
+                    //    "Text": "文字",
+                    //    "White": "白",
+                    //    "Black": "黑",
+                    //    "Red": "红",
+                    //    "Green": "绿",
+                    //    "Blue": "蓝",
+                    //    "Yellow": "黄",
+                    //    "Magenta": "紫红",
+                    //    "Cyan": "青",
+                    //    "Background": "背景",
+                    //    "Window": "视窗",
+                    //    "Transparent": "透明",
+                    //    "Semi-Transparent": "半透明",
+                    //    "Opaque": "不透明",
+                    //    "Font Size": "字体尺寸",
+                    //    "Text Edge Style": "字体边缘样式",
+                    //    "None": "无",
+                    //    "Raised": "浮雕",
+                    //    "Depressed": "压低",
+                    //    "Uniform": "均匀",
+                    //    "Dropshadow": "下阴影",
+                    //    "Font Family": "字体库",
+                    //    "Proportional Sans-Serif": "比例无细体",
+                    //    "Monospace Sans-Serif": "单间隔无细体",
+                    //    "Proportional Serif": "比例细体",
+                    //    "Monospace Serif": "单间隔细体",
+                    //    "Casual": "舒适",
+                    //    "Script": "手写体",
+                    //    "Small Caps": "小型大写字体",
+                    //    "Reset": "重启",
+                    //    "restore all settings to the default values": "恢复全部设定至预设值",
+                    //    "Done": "完成",
+                    //    "Caption Settings Dialog": "字幕设定视窗",
+                    //    "Beginning of dialog window. Escape will cancel and close the window.": "开始对话视窗。离开会取消及关闭视窗",
+                    //    "End of dialog window.": "结束对话视窗"
+                    //});
+
+                    videojs.options.flash.swf = 'js/video-js.swf';
+
+                    // 初始化视频，设为全局变量
+                    myPlayer = videojs('rtmpVideo', {
+                        autoplay: true,
+                        controls: true,//控制条
+                        bigPlayButton: true,
+                        textTrackDisplay: false,
+                        posterImage: false,
+                        errorDisplay: false,
+                        muted: true,// 静音
+                        preload: "auto",// 预加载
+                        language: "zh-CN",// 初始化语言
+                        playbackRates: [1, 2, 3, 4, 5, 8, 10, 20],// 播放速度
+                        'techOrder': ['flash']
+   
+                    }, function () {
+                        console.log("--------------成功初始化视频--------------");
+                        myPlayer.one("playing", function () {         // 监听播放
+                            console.log("开始播放");
+                        });
+                        myPlayer.one("error", function (error) {      // 监听错误
+                            console.error("监听到异常，错误信息：%o", error);
+                        });
+                    });
+
+
+                    myPlayer.src([{ type: sourcestype, src: dataUrl }]);
+                    //视频播放
+                    myPlayer.play();
+
+                    //myPlayer.play();
+                });
+            }
+
+            //关闭视频
+            function closeVideoClick() {
+                $("#info").html("")
+
+                channelid = $("#channelid").val();
+                //关闭视频地址
+                var coloseUrl = baseUrl + "/close_stream/" + channelid;
+
+                // 视频暂停
+                myVideo.pause();
+                //关闭视频流
+                $.get(coloseUrl, function (data) { alert(data.errdesc) });
+
+            }
+
+            //页面加载
+            $(function () {
+                //获取浏览器参数ID
+                var id = getQueryString("id");
+
+                if (id) {
+                    //追加ID
+                    $("#channelid").val(id);
+                }
+                else {
+                    //设置默认值
+                    $("#channelid").val("51010800321320002007");
+                }
+				
+                //openVideoClick();
+
+            })
+
+            //获取浏览器参数a和b
+            function getQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+			
+			 $('#channel a').attr('href', "javascript:void(0)");
+			 $('#channel a').click(function(){
+				var src = $(this).text().trim();
+				var url = src.substring(src.indexOf('rtmp'));
+				 // 初始化视频，设为全局变量
+				  videojs.options.flash.swf = 'js/video-js.swf';
+                var myPlayer = videojs('rtmpVideo', {
+                        autoplay: true,
+                        controls: true,//控制条
+                        bigPlayButton: true,
+                        textTrackDisplay: false,
+                        posterImage: false,
+                        errorDisplay: false,
+                        muted: true,// 静音
+                        preload: "auto",// 预加载
+                        language: "zh-CN",// 初始化语言
+                        playbackRates: [1, 2, 3, 4, 5, 8, 10, 20],// 播放速度
+                        'techOrder': ['flash']
+   
+                    }, function () {
+                        console.log("--------------成功初始化视频--------------");
+                        myPlayer.one("playing", function () {         // 监听播放
+                            console.log("开始播放");
+                        });
+                        myPlayer.one("error", function (error) {      // 监听错误
+                            console.error("监听到异常，错误信息：%o", error);
+                        });
+                    });
+				 //显示返回信息（用于显示，实际使用可注释）
+                    $("#info").html("")
+                    $("#info").append(
+                          "<div><b>" + "videourl：</b>" + url+ "</div><br/>");       //rtsp地址/rtmp地址/hls地址
+				 myPlayer.src([{ type: sourcestype, src: url }]);
+				 myPlayer.play();
+				
+			 });
+
+        </script>
+</body>
+</html>
