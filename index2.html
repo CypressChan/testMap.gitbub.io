@@ -20,7 +20,6 @@
 		<a href="https://emp.cnpc.com.cn/" id="openApp" style="display: none">中国石油企业移动应用平台</a>  
 		<script>
 			<!-- a标签的链接，设置为对应的下载链接；点击打开的动作，在click事件中注册 -->  
-			<script type="text/javascript"> 
 				var u = navigator.userAgent,
 					app = navigator.appVersion;
 				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
@@ -35,6 +34,7 @@
 					}else if(isIOS){
 						 ifr.src = 'EnterpriseHall://';  
 					}
+					alert(ifr.src);
 			        ifr.style.display = 'none';  
 			        document.body.appendChild(ifr);  
 			        window.setTimeout(function(){  
