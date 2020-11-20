@@ -25,22 +25,22 @@
 				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
 				var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
-			    document.getElementById('openApp').onclick = function(e){  
-			        // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为  
-			        // 否则打开a标签的href链接  
-			        var ifr = document.createElement('iframe');  
-					if(isAndroid){
-						 ifr.src = 'cn.com.petrochina.EnterpriseHall://';  
-					}else if(isIOS){
-						 ifr.src = 'EnterpriseHall://';  
-					}
-			        ifr.style.display = 'none';  
-			        document.body.appendChild(ifr);  
-			        window.setTimeout(function(){  
-			            document.body.removeChild(ifr);  
-			        },3000)  
-			    };  
-			    document.getElementById('openApp').click();  
+			    var pageUrl = '';
+			    if(isAndroid){
+			    	 pageUrl = 'cn.com.petrochina.EnterpriseHall://';  
+			    }else if(isIOS){
+			    	 pageUrl = 'EnterpriseHall://';  
+			    }
+			   let a = document.createElement('a');
+			   a.setAttribute('href', pageUrl);
+			   a.setAttribute('target', '_blank');
+			   a.setAttribute('id', 'openAPP');
+			   // 防止反复添加
+			   if(document.getElementById('openAPP')) {
+			   	document.body.removeChild(document.getElementById('openAPP'));
+			   }
+			   document.body.appendChild(a);
+			   a.click();	
 		</script>	
 		
 	</body>
