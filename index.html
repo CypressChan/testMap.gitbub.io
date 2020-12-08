@@ -16,7 +16,7 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-	
+	<a href="javascript:void(0);" onclick="toScan()">调用瑞信扫一扫</a>
 	<a href="javascript:void(0);" onclick="openApp1()">中油易学</a>
 	
 	<button onclick="openAPP('wxworklocal://')">浏览器打开即时通wxworklocal</button>
@@ -110,6 +110,23 @@
 -->	  
   </body>
   <script>
+	  var ruixin = new RuixinApi();
+	  
+	  
+	  
+	  function toScan(){
+		  window.afterScan = function(str){
+		  	var res = JSON.parse(str);
+		  	alert(JSON.stringify(res.result));
+		  };
+		  let params = { "success": "afterScan"};
+		  if(ruixin.isInRuixin()){
+		  	ruixin.scanBarcode(params);
+		  }
+	  }
+	  
+	  
+	  
 	  function openApp1(){
 		  let scheme = 'yixue://';
 		  window.location.href = scheme;
@@ -187,7 +204,6 @@
 	  
 	  
 	  
-	var ruixin = new RuixinApi();
 	function getFile(){
 		var file = document.getElementById('testFile');
 		console.log(file.files[0]);
