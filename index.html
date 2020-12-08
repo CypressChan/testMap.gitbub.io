@@ -16,7 +16,7 @@
     <noscript>
       <strong>We're sorry but test-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-	<a href="javascript:void(0);" onclick="toScan()">瑞信扫一扫</a>
+	<a href="javascript:void(0);" onclick="toScan()">扫一扫</a>
 	<a href="javascript:void(0);" onclick="openApp1()">中油易学</a>
 	
 	<button onclick="openAPP('wxworklocal://')">浏览器打开即时通wxworklocal</button>
@@ -116,8 +116,8 @@
 	  
 	  function toScan(){
 		  window.afterScan = function(res){
-		  	alert(JSON.stringify(res.result).replace('/\\/g', ''));
-			alert(encodeURIComponent(JSON.stringify(res.result).replace('/\\/g', '')));
+		  	alert(JSON.stringify(res.result).replace(/\\/g, ''));
+			alert('测试：' + encodeURI(JSON.stringify(res.result).replace(/\\/g, '')));
 		  };
 		  let params = { "success": "afterScan"};
 		  if(ruixin.isInRuixin()){
