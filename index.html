@@ -116,13 +116,10 @@
 	  
 	  function toScan(){
 		  window.afterScan = function(str){
-			  alert(str);
-		  	var res = JSON.parse(str);
 		  	alert(JSON.stringify(res.result));
 		  };
 		  let params = { "success": "afterScan"};
 		  if(ruixin.isInRuixin()){
-			  alert(params);
 		  	ruixin.scanBarcode(params);
 		  }
 	  }
