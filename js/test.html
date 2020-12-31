@@ -36,6 +36,11 @@
 			}
 			
 			function getZHFinishData(){
+				params = {
+				    "start":0,
+				    "length":"10",
+				    "success":"zhCallback"
+				};
 				document.getElementById('params').innerHTML = JSON.stringify(params)
 				window.android.getZHFinishData(JSON.stringify(params));
 			}
