@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			button {
+				margin: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button onclick="getZHTodoData()">获取待办数据</button>
+		<button onclick="getZHFinishData()">获取已办数据</button>
+		<p>参数：</p>
+		<p id="params"></p>
+		<p>响应：</p>
+		<p id="content"></p>
+		<script type="text/javascript">
+			const callback = (data)=>{
+				console.log(data);
+				document.getElementById('content').innerHTML = data;
+				alert(JSON.stringify(data));
+			};
+			const params = {
+			    "page":"0",
+			    "pagesize":"10",
+			    "success":"callback"
+			};
+			function getZHTodoData(){
+				document.getElementById('params').innerHTML = JSON.stringify(params)
+				window.android.getZHTodoData(JSON.stringify(params));
+			}
+			
+			function getZHFinishData(){
+				document.getElementById('params').innerHTML = JSON.stringify(params)
+				window.android.getZHFinishData(params);
+			}
+		</script>
+	</body>
+
+</html>

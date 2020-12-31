@@ -117,9 +117,9 @@
 	  function toScan(){
 		  window.afterScan = function(res){
 			  let str = JSON.stringify(res.result).replace(/\\/g, '');
-			  str = str.substring(1, str.length-2);
+			  str = str.substring(1, str.length-1);
 		      alert(str);
-			  alert('测试：' + encodeURI(str));
+			  alert('测试：' + encodeURIComponent(str));
 		  };
 		  let params = { "success": "afterScan"};
 		  if(ruixin.isInRuixin()){
