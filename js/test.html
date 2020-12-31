@@ -20,7 +20,7 @@
 		<p>响应：</p>
 		<p id="content"></p>
 		<script type="text/javascript">
-			const callback = (data)=>{
+			const zhCallback = (data)=>{
 				console.log(data);
 				document.getElementById('content').innerHTML = data;
 				alert(JSON.stringify(data));
@@ -28,7 +28,7 @@
 			const params = {
 			    "page":"0",
 			    "pagesize":"10",
-			    "success":"callback"
+			    "success":"zhCallback"
 			};
 			function getZHTodoData(){
 				document.getElementById('params').innerHTML = JSON.stringify(params)
@@ -37,7 +37,7 @@
 			
 			function getZHFinishData(){
 				document.getElementById('params').innerHTML = JSON.stringify(params)
-				window.android.getZHFinishData(params);
+				window.android.getZHFinishData(JSON.stringify(params));
 			}
 		</script>
 	</body>
