@@ -4,32 +4,20 @@
     "data": [
 		{
 		    "cameraId": "2222",
-		    "cameraName": "测试1",
-		    "hlsUrl": "http://39.134.65.162/PLTV/88888888/224/3221225611/index.m3u8",
+		    "cameraName": "CCTV1",
+		    "hlsUrl": "http://cctvalih5ca.v.myalicdn.com/live/cctv1_2/index.m3u8",
 		    "state": "0"
 		},
 		{
 		    "cameraId": "4",
-		    "cameraName": "测试2",
-		    "hlsUrl": "http://104.250.154.42:8080/ZZ_hbo/ZZ_hbo.m3u8",
+		    "cameraName": "CCTV5",
+		    "hlsUrl": "http://223.110.243.172/PLTV/3/224/3221227166/index.m3u8",
 		    "state": "0"
 		},
 		{
 		    "cameraId": "5",
-		    "cameraName": "测试5",
-		    "hlsUrl": "https://ottproxy2.mott.tv/livehls/MOB-SCC/03.m3u8",
-		    "state": "0"
-		},
-		{
-		    "cameraId": "6",
-		    "cameraName": "测试7",
-		    "hlsUrl": "https://ottproxy2.mott.tv/livehls/MOB-SCC/02.m3u8",
-		    "state": "0"
-		},
-		{
-		    "cameraId": "7",
-		    "cameraName": "测试9",
-		    "hlsUrl": "http://stream.mastvnet.com/MASTV/sd/live.m3u8",
+		    "cameraName": "CCTV8",
+		    "hlsUrl": "http://223.110.243.171/PLTV/3/224/3221227204/index.m3u8",
 		    "state": "0"
 		},
 		{

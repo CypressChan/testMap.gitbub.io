@@ -23,7 +23,7 @@
     <div>
 	<h1>videoJS</h1>
         <video id="myVideo" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}' style='width: 50%;height: auto'>
-            <source id="source" src="http://11.89.22.144:11900/51010800001310000010/live/livestream.m3u8" type="application/x-mpegURL"></source>
+            <source id="source" src="http://127.0.0.1:10865/51010800001310000010/live/livestream.m3u8" type="application/x-mpegURL"></source>
         </video>
     </div>
 	播放地址：<span id="address"></span>
@@ -34,7 +34,7 @@
     x-webkit-airplay="true" x5-video-player-fullscreen="true" 
     preload="auto" playsinline="true" webkit-playsinline 
     x5-video-player-typ="h5"> 
-    <source type="application/x-mpegURL" src="http://11.89.22.144:11900/51010800001310000010/live/livestream.m3u8"> 
+    <source type="application/x-mpegURL" src="http://127.0.0.1:10865/51010800001310000010/live/livestream.m3u8"> 
 </video> 
 	</div>
 	<ul id="myUl"></ul>
@@ -42,58 +42,54 @@
 </body>
  
 <script>
-function getItem(arr, newArr){
-  $.each(arr, function(i,n){
-    if(n.children){
-	  getItem(n.children, newArr);
-	}else{
-	  newArr.push(n);
+	var myVideo = videojs('myVideo', {
+		bigPlayButton: true,
+		textTrackDisplay: false,
+		posterImage: false,
+		errorDisplay: false,
+	})
+	myVideo.play()
+	var changeVideo = function (vdoSrc) {
+		if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
+			myVideo.src({
+				src: vdoSrc,
+				type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
+			})
+		} else {
+			myVideo.src(vdoSrc)
+		}
+		myVideo.load();
+		myVideo.play();
 	}
-  })
-}
-$.get('./jfjk.json', function(json){
-  let data = json.data, parent = [];
-  getItem(data, parent);
-  $.each(parent,function(i,n){
-    $('#myUl').append(`<li hls=${n.hlsUrl}>${n.cameraName}</li>`)
-  });
-  $('#myUl').click(function(e){
+	
+	
+	function getItem(arr, newArr){
+	  $.each(arr, function(i,n){
+		if(n.children){
+		  getItem(n.children, newArr);
+		}else{
+		  newArr.push(n);
+		}
+	  })
+	}
+	$.get('./jfjk.json', function(json){
+	  let data = json.data, parent = [];
+	  getItem(data, parent);
+	  $.each(parent,function(i,n){
+		$('#myUl').append(`<li hls=${n.hlsUrl}>${n.cameraName}</li>`)
+	  });
+	  $('#myUl').click(function(e){
 
-	 　if(e.target.nodeName.toLowerCase() == 'li'){
-	      let src = $(e.target).attr('hls');
-		 // src = src.replace('11.89.22.185:8068', '11.89.22.144:11900');
-		  src = src.replace('11.89.22.185:8068', '127.0.0.1:10865');
-		  $('#address').text(src);
-　 　　　 changeVideo(src);　
-		$('#myVideo2').attr('src',src);
-　　　　}
-  })
-});
+		 　if(e.target.nodeName.toLowerCase() == 'li'){
+			  let src = $(e.target).attr('hls');
+			 // src = src.replace('11.89.22.185:8068', '11.89.22.144:11900');
+			  src = src.replace('11.89.22.185:8068', '127.0.0.1:10865');
+			  $('#address').text(src);
+	　 　　　 changeVideo(src);　
+			$('#myVideo2').attr('src',src);
+	　　　　}
+	  })
+	});
 
-
-
-var sss=window.location.search;
-sss=sss.replace('?path=','');
-    // videojs 简单使用
-    var myVideo = videojs('myVideo', {
-        bigPlayButton: true,
-        textTrackDisplay: false,
-        posterImage: false,
-        errorDisplay: false,
-    })
-    myVideo.play()
-    var changeVideo = function (vdoSrc) {
-        if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
-            myVideo.src({
-                src: vdoSrc,
-                type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
-            })
-        } else {
-            myVideo.src(vdoSrc)
-        }
-        myVideo.load();
-        myVideo.play();
-    }
-    var src = 'http://10.89.11.55:83/openUrl/'+sss+'/live.m3u8';
    
 </script>
