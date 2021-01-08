@@ -1,0 +1,179 @@
+{
+    "code": 200,
+    "message": "success",
+    "data": [
+		{
+		    "cameraId": "2222",
+		    "cameraName": "测试1",
+		    "hlsUrl": "http://39.134.65.162/PLTV/88888888/224/3221225611/index.m3u8",
+		    "state": "0"
+		},
+		{
+		    "cameraId": "4",
+		    "cameraName": "测试2",
+		    "hlsUrl": "http://104.250.154.42:8080/ZZ_hbo/ZZ_hbo.m3u8",
+		    "state": "0"
+		},
+		{
+		    "cameraId": "5",
+		    "cameraName": "测试5",
+		    "hlsUrl": "https://ottproxy2.mott.tv/livehls/MOB-SCC/03.m3u8",
+		    "state": "0"
+		},
+		{
+		    "cameraId": "6",
+		    "cameraName": "测试7",
+		    "hlsUrl": "https://ottproxy2.mott.tv/livehls/MOB-SCC/02.m3u8",
+		    "state": "0"
+		},
+		{
+		    "cameraId": "7",
+		    "cameraName": "测试9",
+		    "hlsUrl": "http://stream.mastvnet.com/MASTV/sd/live.m3u8",
+		    "state": "0"
+		},
+		{
+			"cameraId": "jkzx",
+			"cameraName": "监控中心",
+			"children": [
+				{
+					"cameraId": "xtzx",
+					"cameraName": "西南油气田信通中心",
+					"children": [
+						{
+							"cameraId": "xtzxzs",
+							"cameraName": "信通中心直属",
+							"children": [
+								{
+									"cameraId": "ehjf",
+									"cameraName": "二号机房",
+									"children": [
+										{
+										    "cameraId": "51010800001310000010",
+										    "cameraName": "二号机房H列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000010/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000010/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000001",
+										    "cameraName": "信通中心柴油发电机房",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000001/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000001/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000012",
+										    "cameraName": "二号机房GH列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000012/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000012/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000011",
+										    "cameraName": "二号机房CD列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000011/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000011/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000007",
+										    "cameraName": "二号机房BC列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000007/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000007/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000006",
+										    "cameraName": "二号机房AB列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000006/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000006/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000017",
+										    "cameraName": "电池设备间入口",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000017/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000017/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000009",
+										    "cameraName": "二号机房FG列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000009/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000009/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000008",
+										    "cameraName": "二号机房A列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000008/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000008/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000003",
+										    "cameraName": "二号机房西南",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000003/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000003/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000014",
+										    "cameraName": "二号机房主入口",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000014/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000014/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000002",
+										    "cameraName": "二号机房配电柜",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000002/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000002/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000013",
+										    "cameraName": "二号机房DE列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000013/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000013/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000005",
+										    "cameraName": "二号机房EF列通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000005/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000005/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000016",
+										    "cameraName": "UPS设备间入口",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000016/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000016/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000004",
+										    "cameraName": "二号机房东北",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000004/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000004/live/livestream.m3u8",
+										    "state": "0"
+										},
+										{
+										    "cameraId": "51010800001310000015",
+										    "cameraName": "UPS、配电柜通道",
+										    "rtmpUrl": "rtmp://11.89.22.185:8069/live?vhost=51010800001310000015/livestream",
+										    "hlsUrl": "http://11.89.22.185:8068/51010800001310000015/live/livestream.m3u8",
+										    "state": "0"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+    ]
+}
