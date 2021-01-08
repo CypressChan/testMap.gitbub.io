@@ -5,19 +5,19 @@
 		{
 		    "cameraId": "2222",
 		    "cameraName": "CCTV1",
-		    "hlsUrl": "http://cctvalih5ca.v.myalicdn.com/live/cctv1_2/index.m3u8",
+		    "hlsUrl": "https://cctvalih5ca.v.myalicdn.com/live/cctv1_2/index.m3u8",
 		    "state": "0"
 		},
 		{
 		    "cameraId": "4",
 		    "cameraName": "CCTV5",
-		    "hlsUrl": "http://223.110.243.172/PLTV/3/224/3221227166/index.m3u8",
+		    "hlsUrl": "https://223.110.243.172/PLTV/3/224/3221227166/index.m3u8",
 		    "state": "0"
 		},
 		{
 		    "cameraId": "5",
 		    "cameraName": "CCTV8",
-		    "hlsUrl": "http://223.110.243.171/PLTV/3/224/3221227204/index.m3u8",
+		    "hlsUrl": "https://223.110.243.171/PLTV/3/224/3221227204/index.m3u8",
 		    "state": "0"
 		},
 		{
